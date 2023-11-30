@@ -28,6 +28,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="game.cpp" />
+    <ClCompile Include="src\Actors\Projectile.cpp" />
     <ClCompile Include="src\BaseClasses\Actor.cpp" />
     <ClCompile Include="src\Actors\Asteroid.cpp" />
     <ClCompile Include="src\Factories\AsteroidFactory.cpp" />
@@ -106,6 +107,7 @@
       <SDLCheck>true</SDLCheck>
       <LinkCompiled>true</LinkCompiled>
     </ClCompile>
+    <ClCompile Include="src\Interfaces\IVelocity.cpp" />
     <ClCompile Include="src\Struct\float2.cpp">
       <RuntimeLibrary>MultiThreadedDebugDll</RuntimeLibrary>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -182,6 +184,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Actors\Projectile.h" />
     <ClInclude Include="src\BaseClasses\Actor.h" />
     <ClInclude Include="src\BaseClasses\Object.h" />
     <ClInclude Include="src\BaseClasses\Factory.h" />

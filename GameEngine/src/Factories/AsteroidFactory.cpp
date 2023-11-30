@@ -1,6 +1,7 @@
 ﻿#include "AsteroidFactory.h"
+#include "..\Actors\Asteroid.h"
 
-Asteroid* AsteroidFactory::CreateActor()
+Actor* AsteroidFactory::CreateActor()
 {
     return new Asteroid();
 }
