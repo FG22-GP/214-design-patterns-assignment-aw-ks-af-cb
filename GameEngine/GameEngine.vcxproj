@@ -28,7 +28,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="game.cpp" />
-    <ClCompile Include="Input\InputHandler.cpp" />
     <ClCompile Include="src\BaseClasses\Actor.cpp" />
     <ClCompile Include="src\BaseClasses\Object.cpp">
       <RuntimeLibrary>MultiThreadedDebugDll</RuntimeLibrary>
@@ -181,13 +180,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Collision\CollisionHandler.h" />
-    <ClInclude Include="Input\InputHandler.h" />
     <ClInclude Include="src\BaseClasses\Actor.h" />
-<<<<<<< Updated upstream
-=======
-    <ClInclude Include="src\BaseClasses\Event.h" />
-    <ClInclude Include="src\BaseClasses\float2.h" />
->>>>>>> Stashed changes
     <ClInclude Include="src\BaseClasses\Object.h" />
     <ClInclude Include="src\Struct\float2.h" />
     <ClInclude Include="Window.h" />
