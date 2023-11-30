@@ -4,10 +4,9 @@
 #include "../Struct/float2.h"
 #include "Object.h"
 
-class Actor : Object
+class Actor : public Object
 {
 public:
-    Actor();
     Actor(SDL_Rect* Rect,const char FilePath[], float CollisionRadius);
     
 #pragma region Params
