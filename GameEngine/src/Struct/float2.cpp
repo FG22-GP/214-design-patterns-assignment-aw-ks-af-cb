@@ -6,7 +6,7 @@ float2::float2()
     this->Y = 0;
 }
 
-float2::float2(float X, float y)
+float2::float2(int X, int y)
 {
     this->X = X;
     this->Y = y;

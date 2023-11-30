@@ -3,9 +3,9 @@
 struct float2
 {
 public:
-    float X;
-    float Y;
+    int X;
+    int Y;
 
     float2();
-    float2(float X, float y);
+    float2(int X, int y);
 };

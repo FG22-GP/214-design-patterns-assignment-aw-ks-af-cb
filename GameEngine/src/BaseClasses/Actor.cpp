@@ -1,5 +1,6 @@
 ﻿#include "Actor.h"
 
+#include "../Struct/float2.h"
 
 float2 Actor::GetPosition()
 {
