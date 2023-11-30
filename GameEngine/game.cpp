@@ -3,16 +3,10 @@
 #include <stdio.h>
 #include <SDL_image.h>
 #include <SDL_ttf.h>
-#include<iostream>
-#include<cmath>
 
 //Screen dimension constants
 const int SCREEN_WIDTH = 1024;
 const int SCREEN_HEIGHT = 768;
-const int MIN_SCREEN_WIDTH = SCREEN_WIDTH / 4;
-const int MIN_SCREEN_HEIGHT = SCREEN_HEIGHT / 4;
-
-const char* pikachuImagePath{ "img/pikachu.png" };
 
 int main(int argc, char* args[])
 {
