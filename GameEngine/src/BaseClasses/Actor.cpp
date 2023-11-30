@@ -1,6 +1,22 @@
 ﻿#include "Actor.h"
 
+#include <SDL_image.h>
+
 #include "../Struct/float2.h"
+
+Actor::Actor()
+{
+    this->Rect = new SDL_Rect();
+    this->image = IMG_Load("./GameEngine/img/charmander.png");
+    this->CollisionRadius = 0;
+}
+
+Actor::Actor(SDL_Rect* Rect, const char* FilePath, float CollisionRadius)
+{
+    this->Rect = Rect;
+    this->image = IMG_Load(FilePath);
+    this->CollisionRadius = CollisionRadius;
+}
 
 float2 Actor::GetPosition()
 {
