@@ -29,6 +29,9 @@
   <ItemGroup>
     <ClCompile Include="game.cpp" />
     <ClCompile Include="src\BaseClasses\Actor.cpp" />
+    <ClCompile Include="src\Actors\Asteroid.cpp" />
+    <ClCompile Include="src\Factories\AsteroidFactory.cpp" />
+    <ClCompile Include="src\Factories\ProjectileFactory.cpp" />
     <ClCompile Include="src\BaseClasses\Object.cpp">
       <RuntimeLibrary>MultiThreadedDebugDll</RuntimeLibrary>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -181,8 +184,13 @@
   <ItemGroup>
     <ClInclude Include="src\BaseClasses\Actor.h" />
     <ClInclude Include="src\BaseClasses\Object.h" />
+    <ClInclude Include="src\BaseClasses\Factory.h" />
     <ClInclude Include="src\Collision\CollisionHandler.h" />
     <ClInclude Include="src\Struct\float2.h" />
+    <ClInclude Include="src\Actors\Asteroid.h" />
+    <ClInclude Include="src\Factories\AsteroidFactory.h" />
+    <ClInclude Include="src\Factories\ProjectileFactory.h" />
+    <ClInclude Include="src\Interfaces\IVelocity.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>
   <ItemGroup>
