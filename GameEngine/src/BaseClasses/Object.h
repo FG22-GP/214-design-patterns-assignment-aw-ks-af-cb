@@ -1,9 +1,9 @@
 ﻿#pragma once
+#include <SDL_stdinc.h>
 
 class Object
 {
 public:
-    Object();
     virtual ~Object();
     virtual void Update(float DeltaTime);
     
