@@ -7,5 +7,5 @@ class ProjectileFactory : public Factory
 public:
     ~ProjectileFactory() override = default;
     
-    Projectile* CreateActor() override;
+    Actor* CreateActor() override;
 };
