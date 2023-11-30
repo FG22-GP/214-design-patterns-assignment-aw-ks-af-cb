@@ -30,6 +30,7 @@
     <ClCompile Include="game.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Collision\CollisionHandler.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>
   <ItemGroup>
