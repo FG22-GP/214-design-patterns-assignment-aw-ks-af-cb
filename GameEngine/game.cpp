@@ -4,6 +4,8 @@
 #include <SDL_image.h>
 #include <SDL_ttf.h>
 
+#include "src/BaseClasses/Actor.h"
+
 //Screen dimension constants
 const int SCREEN_WIDTH = 1024;
 const int SCREEN_HEIGHT = 768;
@@ -50,6 +52,8 @@ int main(int argc, char* args[])
 
 	SDL_Event e;
 	bool quit = false;
+
+	Actor* actor = new Actor();
 
 	// while the user doesn't want to quit
 	while (quit == false)

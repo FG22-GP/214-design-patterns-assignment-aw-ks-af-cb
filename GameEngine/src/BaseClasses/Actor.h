@@ -6,8 +6,10 @@
 
 class Actor : Object
 {
+public:
     Actor();
     Actor(SDL_Rect* Rect,const char FilePath[], float CollisionRadius);
+    
 #pragma region Params
 public:
     SDL_Rect* Rect;
