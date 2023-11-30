@@ -3,8 +3,8 @@
 class Object
 {
 public:
-    Object object();
-    
+    Object();
+    virtual ~Object();
     virtual void Update(float DeltaTime);
     
 };
