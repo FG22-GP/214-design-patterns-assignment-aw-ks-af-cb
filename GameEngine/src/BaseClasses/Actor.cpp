@@ -1,5 +1,6 @@
 ﻿#include "Actor.h"
 
+#include <iostream>
 #include <SDL_image.h>
 
 #include "../Struct/float2.h"
@@ -31,7 +32,11 @@ void Actor::SetPosition(float2 Position)
 
 void Actor::RenderPass(SDL_Renderer* renderer)
 {
-    if (image == nullptr) return;
+    if (image == nullptr)
+    {
+        std::cout << "image is null \n";
+        return;
+    }
     
     SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, image);
     SDL_RenderCopy(renderer, texture, NULL, Rect);
