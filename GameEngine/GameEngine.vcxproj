@@ -28,8 +28,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="game.cpp" />
+    <ClCompile Include="Object.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Object.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>
   <ItemGroup>
