@@ -1,10 +1,13 @@
 //Using SDL and standard IO
+#include <iostream>
 #include <SDL.h>
 #include <stdio.h>
 #include <SDL_image.h>
 #include <SDL_ttf.h>
 
 #include "src/BaseClasses/Actor.h"
+#include "src/BaseClasses/Core.h"
+#include "src/InputHandler/InputHandler.h"
 
 //Screen dimension constants
 const int SCREEN_WIDTH = 1024;
@@ -50,31 +53,20 @@ int main(int argc, char* args[])
 	SDL_RenderSetLogicalSize(renderer, 1024, 768);
 #pragma endregion
 
-	SDL_Event e;
 	bool quit = false;
 
-	Actor* actor = new Actor();
+	Core* core = new Core();
 
 	// while the user doesn't want to quit
 	while (quit == false)
 	{
-		Uint32 time = SDL_GetTicks(); // can be used, to see, how much time in ms has passed since app start
+		core->Inputs();
+		quit = core->Quit();
+		if (quit) break;
 
-
-		// loop through all pending events from Windows (OS)
-		while (SDL_PollEvent(&e))
-		{
-			// check, if it's an event we want to react to:
-			switch (e.type) {
-				case SDL_QUIT: {
-					quit = true;
-				} break;
-			}
-		}
+		core->UpdateObjects();
+		core->Collision();
 		
-		// present screen (switch buffers)
-		SDL_RenderPresent(renderer);
-
 		SDL_Delay(0); // can be used to wait for a certain amount of ms
 	}
 

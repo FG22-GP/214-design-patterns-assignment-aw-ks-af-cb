@@ -9,6 +9,5 @@ public:
     Asteroid(float speed, float2 direction);
     ~Asteroid() override = default;
 
-    void Update(float DeltaTime) override;
     
 };

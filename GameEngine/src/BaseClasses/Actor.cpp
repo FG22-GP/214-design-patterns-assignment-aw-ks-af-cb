@@ -5,6 +5,13 @@
 
 #include "../Struct/float2.h"
 
+Actor::Actor()
+{
+    this->Rect = new SDL_Rect();
+    this->image = IMG_Load("./GameEngine/img/charmander.png");
+    this->CollisionRadius = 0;
+}
+
 Actor::Actor(SDL_Rect* Rect, const char* FilePath, float CollisionRadius)
 {
     this->Rect = Rect;
@@ -38,4 +45,9 @@ void Actor::RenderPass(SDL_Renderer* renderer)
 void Actor::Destroy()
 {
     delete this;
+}
+
+void Actor::Update(float DeltaTime)
+{
+    Object::Update(DeltaTime);
 }

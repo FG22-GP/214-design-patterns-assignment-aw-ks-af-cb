@@ -7,6 +7,7 @@
 class Actor : public Object
 {
 public:
+    Actor();
     Actor(SDL_Rect* Rect,const char FilePath[], float CollisionRadius);
     
 #pragma region Params
@@ -22,5 +23,7 @@ public:
     void SetPosition(float2 Position);
     void RenderPass(SDL_Renderer* renderer);
     void Destroy();
+
+    void Update(float DeltaTime) override;
 #pragma endregion
 };
