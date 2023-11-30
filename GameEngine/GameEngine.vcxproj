@@ -179,9 +179,9 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Collision\CollisionHandler.h" />
     <ClInclude Include="src\BaseClasses\Actor.h" />
     <ClInclude Include="src\BaseClasses\Object.h" />
+    <ClInclude Include="src\Collision\CollisionHandler.h" />
     <ClInclude Include="src\Struct\float2.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>
@@ -194,6 +194,9 @@
     <CopyFileToFolders Include="..\ext\SDL2_ttf-2.20.2\lib\x64\SDL2_ttf.dll">
       <FileType>Document</FileType>
     </CopyFileToFolders>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\InputHandler\InputHandler.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

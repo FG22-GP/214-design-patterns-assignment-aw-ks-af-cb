@@ -1,5 +1,7 @@
 ﻿#pragma once
 
+#include "../Struct/float2.h"
+
 class CollisionHandler
 {
     

@@ -1,7 +1,7 @@
 ﻿#pragma once
 #include <SDL_rect.h>
 #include <SDL_render.h>
-#include "float2.h"
+#include "../Struct/float2.h"
 #include "Object.h"
 
 class Actor : Object
