@@ -14,7 +14,9 @@ public:
 public:
     std::list<Actor*> Actors;
 
+    Actor* Player;
 
+    float2* Input = new float2(0,0);
 private:
     bool quit = false;
     float LastFrameTime;
@@ -23,6 +25,7 @@ public:
     void Inputs();
     void UpdateObjects();
     void Collision();
+    void RenderPass(SDL_Renderer* renderer);
 
     bool Quit()
     {
