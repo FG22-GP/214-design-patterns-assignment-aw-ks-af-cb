@@ -7,9 +7,9 @@ class InputHandler
 public:
 
     using MoveInputCallBack = std::function<void(float2)>;
-
+    using MouseInputCallBack = std::function<void(float2)>;
     MoveInputCallBack MoveInput;
-    
+    MouseInputCallBack MouseInput;
     float2* Input;
     float2* MousePosition;
     
@@ -24,6 +24,7 @@ public:
     {
         Input = new float2();
         MousePosition = new float2();
+        mouseClicked = false;
     }
     
     void HandleKeyInputs(SDL_KeyCode key_code)
@@ -59,21 +60,45 @@ public:
         }
     }
 
-    void HandleInputEvents(float2 Input)
+    void HandleMouseInput(float2* MouseInput)
+    {
+        switch (MouseInput)
+        {
+        case SDL_MOUSEBUTTONDOWN:
+            mouseClicked = true;
+            break;
+        case SDL_MOUSEBUTTONUP:
+            mouseClicked = false;
+            break;
+        case SDL_MOUSEMOTION:
+            MousePosition->X = MouseInput->X;
+            MousePosition->Y = MouseInput->Y;
+            break;
+        }
+    }
+
+    void HandleInputEvents(float2 keyInput, float2 mouseInput)
     {
         if(UpKey)
-            Input.Y += 1;
+            keyInput.Y += 1;
         else if(DownKey)
-            Input.Y -= 1;
+            keyInput.Y -= 1;
         else if(LeftKey)
-            Input.X += 1;
+            keyInput.X += 1;
         else if(RightKey)
-            Input.X -= 1;
+            keyInput.X -= 1;
         
         if(MoveInput)
-        MoveInput(Input);
+            MoveInput(keyInput);
 
-        Input = float2(0, 0);
+        if(MouseInput)
+            MouseInput(mouseInput);
+        
+        UpKey = false;
+        DownKey = false;
+        LeftKey = false;
+        RightKey = false;
+
+        keyInput = float2(0, 0);
     }
-    
 };
