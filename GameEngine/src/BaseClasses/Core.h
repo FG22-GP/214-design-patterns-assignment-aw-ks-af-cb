@@ -14,6 +14,8 @@ public:
 public:
     std::list<Actor*> Actors;
 
+    Actor* Player;
+
 private:
     bool quit = false;
     float LastFrameTime;

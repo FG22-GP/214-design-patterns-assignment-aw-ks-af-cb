@@ -1,10 +1,11 @@
 ﻿#pragma once
 
 #include "Actor.h"
+template<typename T>
 
-class Factory
+class Factory<T>
 {
 public:
     virtual ~Factory() = default;
-    virtual Actor* CreateActor() = 0;
+    virtual T* CreateActor() = 0;
 };

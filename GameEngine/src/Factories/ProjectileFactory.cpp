@@ -1,6 +1,6 @@
 ﻿#include "ProjectileFactory.h"
 
-Actor* ProjectileFactory::CreateActor()
+Projectile* ProjectileFactory::CreateActor()
 {
     return new Projectile();
 }

@@ -2,9 +2,9 @@
 #include "../BaseClasses/Factory.h"
 #include "..\Actors\Asteroid.h"
 
-class AsteroidFactory : public Factory
+class AsteroidFactory : public Factory<Asteroid>
 {
 public:
     ~AsteroidFactory() override = default;
-    Actor* CreateActor() override;
+    Asteroid* CreateActor() override;
 };
