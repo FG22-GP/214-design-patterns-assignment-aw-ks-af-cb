@@ -1,15 +1,23 @@
 ﻿#include "Core.h"
 
+#include <iostream>
 #include <SDL_timer.h>
 
-Core::Core()
+Core::Core(): e(), LastFrameTime(0)
 {
     quit = false;
+
+    SDL_Rect* Rect = new SDL_Rect();
+
+    Rect->w = 100;
+    Rect->h = 100;
+    
+    Player = new Actor(Rect, "./img/pikachu.png", 10.f);
 }
 
 void Core::Start()
 {
-    Player = new Actor();
+
 }
 
 void Core::Inputs()
@@ -63,9 +71,10 @@ void Core::UpdateObjects()
     {
         actor->Update(deltaTime);
     }
-
+    Player->Update(deltaTime);
+    
     Player->Rect->x += Input->X;
-    Player->Rect->y += Input->Y;
+    Player->Rect->y += Input->Y; 
 }
 
 void Core::Collision()

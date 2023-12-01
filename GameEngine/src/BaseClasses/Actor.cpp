@@ -8,7 +8,7 @@
 Actor::Actor()
 {
     this->Rect = new SDL_Rect();
-    this->image = IMG_Load("./GameEngine/img/charmander.png");
+    this->image = IMG_Load("./img/charmander.png");
     this->CollisionRadius = 0;
 }
 
@@ -39,7 +39,7 @@ void Actor::RenderPass(SDL_Renderer* renderer)
     }
     
     SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, image);
-    SDL_RenderCopy(renderer, texture, NULL, Rect);
+    SDL_RenderCopy(renderer, texture, nullptr, Rect);
 }
 
 void Actor::Destroy()

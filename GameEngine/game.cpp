@@ -70,6 +70,9 @@ int main(int argc, char* args[])
 		core->Collision();
 		core->RenderPass(renderer);
 		
+		SDL_SetRenderDrawColor(renderer, 120, 60, 255, 255);
+		SDL_RenderClear(renderer);
+
 		SDL_Delay(0); // can be used to wait for a certain amount of ms
 	}
 
