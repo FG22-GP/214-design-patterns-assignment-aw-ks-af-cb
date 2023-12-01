@@ -14,12 +14,12 @@ public:
 public:
     std::list<Actor*> Actors;
 
-    Actor* Player;
 
 private:
     bool quit = false;
     float LastFrameTime;
 public:
+    void Start();
     void Inputs();
     void UpdateObjects();
     void Collision();

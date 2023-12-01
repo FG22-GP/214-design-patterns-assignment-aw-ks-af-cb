@@ -7,6 +7,11 @@ Core::Core()
     quit = false;
 }
 
+void Core::Start()
+{
+    
+}
+
 void Core::Inputs()
 {
     // loop through all pending events from Windows (OS)

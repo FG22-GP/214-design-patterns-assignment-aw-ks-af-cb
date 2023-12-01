@@ -57,6 +57,8 @@ int main(int argc, char* args[])
 
 	Core* core = new Core();
 
+	core->Start();
+
 	// while the user doesn't want to quit
 	while (quit == false)
 	{
