@@ -2,6 +2,8 @@
 
 #include "Projectile.h"
 
+Projectile::Projectile() : IVelocity(1, float2(0,0)){}
+
 Projectile::Projectile(float speed, float2 direction): IVelocity(speed, direction) {}
 
 // void Projectile::Update(float deltaTime)

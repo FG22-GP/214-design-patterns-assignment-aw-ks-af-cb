@@ -7,6 +7,7 @@ class Asteroid final : public Actor, public IVelocity
 {
 public:
     Asteroid(float speed, float2 direction);
+    Asteroid();
     ~Asteroid() override = default;
 
     
