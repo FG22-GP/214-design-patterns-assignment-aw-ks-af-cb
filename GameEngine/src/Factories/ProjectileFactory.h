@@ -1,11 +1,21 @@
 ﻿#pragma once
-#include "../BaseClasses/Factory.h"
+#include <memory>
+
 #include "../Actors/Projectile.h"
 
-class ProjectileFactory : public Factory
+class ProjectileFactory
 {
-public:
-    ~ProjectileFactory() override = default;
+private:
+    float2 defaultSize;
+    const char* defaultFilePath;
+    float defaultCollisionRadius;
     
-    Actor* CreateActor() override;
+    
+public:
+    float defaultSpeed;
+    
+    ProjectileFactory();
+    ~ProjectileFactory() = default;
+    
+    Projectile* CreateProjectile(float2 position, float2 direction) const;
 };

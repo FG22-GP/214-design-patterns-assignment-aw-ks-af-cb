@@ -60,21 +60,21 @@ public:
         }
     }
 
-    void HandleMouseInput(float2* MouseInput)
+    void HandleMouseInput(float2 MouseInput)
     {
-        switch (MouseInput)
-        {
-        case SDL_MOUSEBUTTONDOWN:
-            mouseClicked = true;
-            break;
-        case SDL_MOUSEBUTTONUP:
-            mouseClicked = false;
-            break;
-        case SDL_MOUSEMOTION:
-            MousePosition->X = MouseInput->X;
-            MousePosition->Y = MouseInput->Y;
-            break;
-        }
+       // switch (MouseInput)
+       // {
+       // case SDL_MOUSEBUTTONDOWN:
+       //     mouseClicked = true;
+       //     break;
+       // case SDL_MOUSEBUTTONUP:
+       //     mouseClicked = false;
+       //     break;
+       // case SDL_MOUSEMOTION:
+       //     MousePosition->X = MouseInput->X;
+       //     MousePosition->Y = MouseInput->Y;
+       //     break;
+       // }
     }
 
     void HandleInputEvents(float2 keyInput, float2 mouseInput)

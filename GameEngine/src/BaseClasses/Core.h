@@ -3,6 +3,7 @@
 #include <SDL_events.h>
 
 #include "Actor.h"
+#include "ProjectilePool.h"
 
 class Core
 {
@@ -12,9 +13,11 @@ public:
     SDL_Event e;
 
 public:
-    std::list<Actor*> Actors;
+    std::vector<Actor*> Actors;
 
     Actor* Player;
+
+    ProjectilePool* projectilePool;
 
     float2* Input = new float2(0,0);
 private:

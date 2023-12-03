@@ -7,8 +7,15 @@ Core::Core(): e(), LastFrameTime(0)
 {
     quit = false;
 
+    projectilePool = new ProjectilePool(10);
+
+    auto projectile = projectilePool->AcquireObject({10, 10}, {10, 10});
+    Actors.push_back(projectile);
+
     SDL_Rect* Rect = new SDL_Rect();
 
+    Rect->x = 100;
+    Rect->y = 100;
     Rect->w = 100;
     Rect->h = 100;
     
@@ -83,9 +90,14 @@ void Core::Collision()
 
 void Core::RenderPass(SDL_Renderer* renderer)
 {
+    SDL_SetRenderDrawColor(renderer, 120, 60, 255, 255);
+    SDL_RenderClear(renderer);
+    
     for (Actor* actor : Actors)
     {
         actor->RenderPass(renderer);
     }
     Player->RenderPass(renderer);
+
+    SDL_RenderPresent(renderer);
 }

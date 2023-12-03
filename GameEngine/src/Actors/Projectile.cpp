@@ -2,12 +2,28 @@
 
 #include "Projectile.h"
 
-Projectile::Projectile() : IVelocity(1, float2(0,0)){}
+Projectile::Projectile(SDL_Rect* rect, const char filePath[], float collisionRadius, float speed, float2 direction): Actor(rect, filePath, collisionRadius) ,IVelocity(speed, direction) {}
 
-Projectile::Projectile(float speed, float2 direction): IVelocity(speed, direction) {}
+void Projectile::Update(float deltaTime)
+{
+    Rect->x += static_cast<int>(speed * direction.X * deltaTime);
+    Rect->y += static_cast<int>(speed * direction.Y * deltaTime);
+}
 
-// void Projectile::Update(float deltaTime)
-// {
-//     Rect->x += IVelocity::speed * IVelocity::direction.X * deltaTime;
-//     Rect->y += IVelocity::speed * IVelocity::direction.Y * deltaTime;
-// }
+void Projectile::RenderPass(SDL_Renderer* renderer)
+{
+    Actor::RenderPass(renderer);
+}
+
+void Projectile::Destroy()
+{
+    Actor::Destroy();
+}
+
+void Projectile::Reset()
+{
+    Rect->x = 9999;
+    Rect->y = 9999;
+    direction = {0, 0};
+    speed = 0;
+}

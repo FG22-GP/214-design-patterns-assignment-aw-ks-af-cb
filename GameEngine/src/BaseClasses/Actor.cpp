@@ -5,13 +5,6 @@
 
 #include "../Struct/float2.h"
 
-Actor::Actor()
-{
-    this->Rect = new SDL_Rect();
-    this->image = IMG_Load("./img/charmander.png");
-    this->CollisionRadius = 0;
-}
-
 Actor::Actor(SDL_Rect* Rect, const char* FilePath, float CollisionRadius)
 {
     this->Rect = Rect;
@@ -37,9 +30,11 @@ void Actor::RenderPass(SDL_Renderer* renderer)
         std::cout << "image is null \n";
         return;
     }
-    
+
+    if (renderer == nullptr)
+        return;
     SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, image);
-    SDL_RenderCopy(renderer, texture, nullptr, Rect);
+    SDL_RenderCopy(renderer, texture, NULL, Rect);
 }
 
 void Actor::Destroy()

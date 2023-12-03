@@ -1,10 +1,16 @@
 ﻿#pragma once
-#include "../BaseClasses/Factory.h"
-#include "..\Actors\Asteroid.h"
+#include <memory>
 
-class AsteroidFactory : public Factory
+#include "../Actors/Asteroid.h"
+
+class AsteroidFactory
 {
+private:
+    const char* filePath;
+    
 public:
-    ~AsteroidFactory() override = default;
-    Actor* CreateActor() override;
+    AsteroidFactory();
+    ~AsteroidFactory() = default;
+    
+    std::unique_ptr<Asteroid> CreateAsteroid(float2 position, float2 size, float2 direction, float speed) const;
 };
