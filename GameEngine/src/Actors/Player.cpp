@@ -1,11 +1,7 @@
 ﻿#include "Player.h"
 
-Player::Player() : IVelocity(1, float2(0,0))
-{
-    
-}
 
-Player::Player(float speed, float2 direction) : IVelocity(speed, direction)
+Player::Player(SDL_Rect* rect, const char filePath[], float collisionRadius, float speed, float2 direction) : Actor(rect, filePath, collisionRadius), IVelocity(speed, direction)
 {
     
 }

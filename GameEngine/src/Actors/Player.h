@@ -5,8 +5,7 @@
 class Player final : Actor, IVelocity
 {
 public:
-    Player();
-    Player(float speed, float2 direction);
+    Player(SDL_Rect* rect, const char filePath[], float collisionRadius, float speed, float2 direction);
     ~Player() override = default;
 
     void Fire();
