@@ -8,8 +8,8 @@ Core::Core(): e(), LastFrameTime(0)
     quit = false;
 
     projectilePool = new ProjectilePool(1);
-
-    auto projectile = projectilePool->AcquireObject({10, 10}, {10, 0});
+    
+    projectile = projectilePool->AcquireObject({10, 10}, {0, 10});
     Actors.push_back(projectile);
 
     SDL_Rect* Rect = new SDL_Rect();
@@ -19,7 +19,7 @@ Core::Core(): e(), LastFrameTime(0)
     Rect->w = 100;
     Rect->h = 100;
     
-    Player = new Actor(Rect, "./img/pikachu.png", 10);
+    Player = new Actor(Rect, "./img/charmander.png", 10);
 }
 
 Core::~Core()
@@ -52,20 +52,23 @@ void Core::Inputs()
                 case SDLK_DOWN:
                     {
                         Input->Y = 1;
+                        break;
                     }
                 case SDLK_UP:
                     {
                         Input->Y = -1;
+                        break;
                     }
                 case SDLK_RIGHT:
                     {
                         Input->X = 1;
+                        break;
                     }
                 case SDLK_LEFT:
                     {
                         Input->X = -1;
+                        break;
                     }
-                    break;
                 }
             }
             break;
@@ -83,17 +86,15 @@ void Core::UpdateObjects()
     float deltaTime = Time - LastFrameTime;
     LastFrameTime = Time;
     
-    for (Actor* actor : Actors)
+    for (auto actor : Actors)
     {
         actor->Update(deltaTime);
     }
+    
     Player->Update(deltaTime);
     
     Player->Rect->x += Input->X;
     Player->Rect->y += Input->Y;
-
-    float frameRate = 1.0f / deltaTime;
-    std::cout << "Frame Rate: " << frameRate << " fps" << std::endl;
 }
 
 void Core::Collision()

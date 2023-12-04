@@ -9,7 +9,7 @@ public:
     Projectile(SDL_Rect* rect, const char filePath[], int collisionRadius, float speed, float2 direction);
     ~Projectile() override = default;
 
-    void Update(float deltaTime) override;
+    void Update(float DeltaTime) override;
 
     void RenderPass(SDL_Renderer* renderer) override;
 

@@ -2,12 +2,14 @@
 
 #include "Projectile.h"
 
+#include <iostream>
+
 Projectile::Projectile(SDL_Rect* rect, const char filePath[], int collisionRadius, float speed, float2 direction): Actor(rect, filePath, collisionRadius) ,IVelocity(speed, direction) {}
 
-void Projectile::Update(float deltaTime)
+void Projectile::Update(float DeltaTime)
 {
-    Rect->x += static_cast<int>(speed * direction.X * deltaTime);
-    Rect->y += static_cast<int>(speed * direction.Y * deltaTime);
+    Rect->x += static_cast<int>(speed * direction.X * DeltaTime);
+    Rect->y += static_cast<int>(speed * direction.Y * DeltaTime);
 }
 
 void Projectile::RenderPass(SDL_Renderer* renderer)

@@ -24,6 +24,7 @@ public:
 private:
     bool quit = false;
     float LastFrameTime;
+    Projectile* projectile;
 public:
     void Start();
     void Inputs();
