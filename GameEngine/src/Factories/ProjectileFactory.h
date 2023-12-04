@@ -8,7 +8,7 @@ class ProjectileFactory
 private:
     float2 defaultSize;
     const char* defaultFilePath;
-    float defaultCollisionRadius;
+    int defaultCollisionRadius;
     
     
 public:

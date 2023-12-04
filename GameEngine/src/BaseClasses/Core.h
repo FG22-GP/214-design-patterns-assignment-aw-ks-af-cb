@@ -9,6 +9,7 @@ class Core
 {
 public:
     Core();
+    ~Core();
 
     SDL_Event e;
 

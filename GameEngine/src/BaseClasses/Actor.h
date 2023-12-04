@@ -7,12 +7,12 @@
 class Actor : public Object
 {
 public:
-    Actor(SDL_Rect* Rect,const char FilePath[], float CollisionRadius);
+    Actor(SDL_Rect* Rect,const char FilePath[], int CollisionRadius);
     
 #pragma region Params
 public:
     SDL_Rect* Rect;
-    float CollisionRadius;
+    int CollisionRadius;
 protected:
     SDL_Surface* image;
 #pragma endregion

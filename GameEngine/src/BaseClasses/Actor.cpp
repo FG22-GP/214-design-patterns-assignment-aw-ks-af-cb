@@ -5,7 +5,7 @@
 
 #include "../Struct/float2.h"
 
-Actor::Actor(SDL_Rect* Rect, const char* FilePath, float CollisionRadius)
+Actor::Actor(SDL_Rect* Rect, const char* FilePath, int CollisionRadius)
 {
     this->Rect = Rect;
     this->image = IMG_Load(FilePath);
@@ -35,6 +35,7 @@ void Actor::RenderPass(SDL_Renderer* renderer)
         return;
     SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, image);
     SDL_RenderCopy(renderer, texture, NULL, Rect);
+    SDL_DestroyTexture(texture);
 }
 
 void Actor::Destroy()

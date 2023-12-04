@@ -2,7 +2,7 @@
 
 #include "Asteroid.h"
 
-Asteroid::Asteroid(SDL_Rect* rect, const char filePath[], float collisionRadius, float speed, float2 direction): Actor(rect, filePath, collisionRadius) ,IVelocity(speed, direction) {}
+Asteroid::Asteroid(SDL_Rect* rect, const char filePath[], int collisionRadius, float speed, float2 direction): Actor(rect, filePath, collisionRadius) ,IVelocity(speed, direction) {}
 
 void Asteroid::Update(float deltaTime)
 {

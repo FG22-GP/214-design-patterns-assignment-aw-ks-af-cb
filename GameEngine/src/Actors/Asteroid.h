@@ -6,7 +6,7 @@
 class Asteroid final : public Actor, public IVelocity
 {
 public:
-    Asteroid(SDL_Rect* rect, const char fielPath[], float collisionRadius, float speed, float2 direction);
+    Asteroid(SDL_Rect* rect, const char fielPath[], int collisionRadius, float speed, float2 direction);
     ~Asteroid() override = default;
 
     void Update(float deltaTime) override;
