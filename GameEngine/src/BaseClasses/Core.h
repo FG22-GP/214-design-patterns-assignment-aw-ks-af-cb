@@ -16,15 +16,13 @@ public:
     SDL_Event e;
 
 public:
-    std::vector<Actor*> Actors;
+    static inline std::vector<std::unique_ptr<Actor>> Actors;
+    
+    static inline ProjectilePool* projectilePool;
+    
+    static inline InputHandler* input_handler;
 
-    Player* Player;
-
-    ProjectilePool* projectilePool;
-
-    float2* Input = new float2(0,0);
-
-    InputHandler* input_handler;
+    static void RemoveBinding();
 private:
     bool quit = false;
     float LastFrameTime;
@@ -35,6 +33,7 @@ public:
     void UpdateObjects();
     void Collision();
     void RenderPass(SDL_Renderer* renderer);
+    void Cleanup();
 
     bool Quit()
     {

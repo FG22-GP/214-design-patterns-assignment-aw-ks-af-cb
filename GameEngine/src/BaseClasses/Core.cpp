@@ -11,8 +11,24 @@ Core::Core(): e(), LastFrameTime(0)
     projectilePool = new ProjectilePool(1);
     
     projectile = projectilePool->AcquireObject({10, 10}, {0, 10});
-    Actors.push_back(projectile);
+    
+    input_handler = new InputHandler();
+}
 
+Core::~Core()
+{
+    delete projectilePool;
+}
+
+void Core::RemoveBinding()
+{
+    input_handler->MouseInput = NULL;
+    input_handler->MoveInput = NULL;
+    input_handler->MouseMotion = NULL;
+}
+
+void Core::Start()
+{
     SDL_Rect* Rect = new SDL_Rect();
 
     Rect->x = 100;
@@ -20,20 +36,10 @@ Core::Core(): e(), LastFrameTime(0)
     Rect->w = 100;
     Rect->h = 100;
 
-    input_handler = new InputHandler();
-    Player = new class Player(Rect, "./img/charmander.png", 10, 1, float2(0,0));
+    Player* Player = new class Player(Rect, "./img/charmander.png", 10, 1, float2(0,0));
     input_handler->MoveInput = std::bind(&Player::Move, Player, std::placeholders::_1);
-}
-
-Core::~Core()
-{
-    delete Player;
-    delete projectilePool;
-}
-
-void Core::Start()
-{
-
+    input_handler->MouseInput = std::bind(&Player::Fire, Player, std::placeholders::_1);
+    input_handler->MouseMotion = std::bind(&Player::Aim, Player, std::placeholders::_1);
 }
 
 void Core::Inputs()
@@ -58,7 +64,21 @@ void Core::Inputs()
                 input_handler->HandleKeyUpInputs(e.key.keysym.sym);
                 break;
             }
-
+        case SDL_MOUSEBUTTONDOWN:
+            {
+                input_handler->HandleMouseButtonDownInput(e.button);
+                break;
+            }
+        case SDL_MOUSEBUTTONUP:
+            {
+                input_handler->HandleMouseButtonUpInput(e.button);
+                break;
+            }
+        case SDL_MOUSEMOTION:
+            {
+                input_handler->HandleMouseMotionInput(e.motion);
+                break;
+            }
             
         }
     }
@@ -74,15 +94,10 @@ void Core::UpdateObjects()
     float deltaTime = Time - LastFrameTime;
     LastFrameTime = Time;
     
-    for (auto actor : Actors)
+    for (int i = 0; i < Actors.size(); i++)
     {
-        actor->Update(deltaTime);
+        Actors[i].get()->Update(deltaTime);
     }
-    
-    Player->Update(deltaTime);
-    
-    Player->Rect->x += Input->X;
-    Player->Rect->y += Input->Y;
 }
 
 void Core::Collision()
@@ -94,11 +109,23 @@ void Core::RenderPass(SDL_Renderer* renderer)
     SDL_SetRenderDrawColor(renderer, 120, 60, 255, 255);
     SDL_RenderClear(renderer);
     
-    for (Actor* actor : Actors)
+    for (int i = 0; i < Actors.size(); i++)
     {
-        actor->RenderPass(renderer);
+        Actors[i]->RenderPass(renderer);
     }
-    Player->RenderPass(renderer);
+
 
     SDL_RenderPresent(renderer);
+}
+
+void Core::Cleanup()
+{
+    for (int i = 0; i < Actors.size(); i++)
+    {
+        if (Actors[i]->ShouldBeDestroyed)
+        {
+            Actors.erase(Actors.begin() + i);
+            
+        }
+    }
 }
