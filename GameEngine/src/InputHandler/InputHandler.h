@@ -7,8 +7,8 @@ class InputHandler
 {
 public:
 
-    using MoveInputCallBack = std::function<void(float2)>;
-    using MouseInputCallBack = std::function<void(float2)>;
+    using MoveInputCallBack = std::function<void(float2*)>;
+    using MouseInputCallBack = std::function<void(float2*)>;
     MoveInputCallBack MoveInput;
     MouseInputCallBack MouseInput;
     float2* Input;
@@ -49,7 +49,6 @@ public:
 
     void HandleKeyUpInputs(SDL_Keycode key_code)
     {
-
         switch (key_code)
         {
         case SDLK_w:
@@ -99,15 +98,10 @@ public:
 
         
         
-        // if(MoveInput)
-        //     MoveInput(keyInput);
-        //
+        if(MoveInput)
+            MoveInput(Input);
+        
         // if(MouseInput)
         //     MouseInput(mouseInput);
-        
-        // UpKey = false;
-        // DownKey = false;
-        // LeftKey = false;
-        // RightKey = false;
     }
 };

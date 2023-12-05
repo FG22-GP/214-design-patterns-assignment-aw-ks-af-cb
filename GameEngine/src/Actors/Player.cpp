@@ -10,10 +10,8 @@ Player::Player(
     const char filePath[],
     int collisionRadius,
     float speed,
-    float2 direction,
-    InputHandler* input_handler) : Actor(rect, filePath, collisionRadius), IVelocity(speed, direction)
+    float2 direction) : Actor(rect, filePath, collisionRadius), IVelocity(speed, direction)
 {
-    this->input_handler = input_handler;
 }
 
 void Player::Fire()
@@ -36,5 +34,4 @@ void Player::Update(float DeltaTime)
 {
     Actor::Update(DeltaTime);
 
-    Move(input_handler->Input);
 }

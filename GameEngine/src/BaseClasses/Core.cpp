@@ -21,7 +21,8 @@ Core::Core(): e(), LastFrameTime(0)
     Rect->h = 100;
 
     input_handler = new InputHandler();
-    Player = new class Player(Rect, "./img/charmander.png", 10, 1, float2(0,0), input_handler);
+    Player = new class Player(Rect, "./img/charmander.png", 10, 1, float2(0,0));
+    input_handler->MoveInput = std::bind(&Player::Move, Player, std::placeholders::_1);
 }
 
 Core::~Core()
