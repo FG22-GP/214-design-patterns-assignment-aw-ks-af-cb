@@ -56,7 +56,9 @@ void Core::Inputs()
         case SDL_KEYUP:
             {
                 input_handler->HandleKeyUpInputs(e.key.keysym.sym);
+                break;
             }
+
             
         }
     }
