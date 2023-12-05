@@ -11,7 +11,7 @@ public:
     ~Player() override = default;
     
     void Fire(float2* mousePosition);
-    void Aim();
+    void Aim(float2* mousePosition);
     void Move(float2* input);
     void Update(float DeltaTime) override;
 };

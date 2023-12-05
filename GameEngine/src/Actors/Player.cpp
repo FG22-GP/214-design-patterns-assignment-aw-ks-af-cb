@@ -19,9 +19,9 @@ void Player::Fire(float2* mousePosition)
     std::cout << "Fire" << std::endl;
 }
 
-void Player::Aim()
+void Player::Aim(float2* mousePosition)
 {
-    
+    std::cout << " " << mousePosition->X << " : " << mousePosition->Y << std::endl; 
 }
 
 void Player::Move(float2* input)

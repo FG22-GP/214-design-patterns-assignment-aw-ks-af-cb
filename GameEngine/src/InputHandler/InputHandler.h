@@ -9,8 +9,12 @@ public:
 
     using MoveInputCallBack = std::function<void(float2*)>;
     using MouseInputCallBack = std::function<void(float2*)>;
+    using MouseMotionInputCallBack = std::function<void(float2*)>;
+    
     MoveInputCallBack MoveInput;
     MouseInputCallBack MouseInput;
+    MouseMotionInputCallBack MouseMotion;
+    
     float2* Input;
     float2* MousePosition;
     
@@ -82,10 +86,15 @@ public:
         }
     }
 
+    void HandleMouseMotionInput(SDL_MouseMotionEvent MouseCode)
+    {
+        MousePosition->X = MouseCode.x;
+        MousePosition->Y = MouseCode.y;
+    }
+
     void HandleInputEvents()
     {
         Input->X = Input->Y = 0;
-        MousePosition->X = MousePosition->Y = 0;
         
         if(UpKey)
             Input->Y += -1;
@@ -100,9 +109,12 @@ public:
         if(MoveInput)
             MoveInput(Input);
         
-         if(MouseInput && mouseClicked)
-             MouseInput(MousePosition);
+        if(MouseMotion)
+            MouseMotion(MousePosition);
 
+        if(MouseInput && mouseClicked)
+            MouseInput(MousePosition);
+        
         mouseClicked = false;
     }
 };
