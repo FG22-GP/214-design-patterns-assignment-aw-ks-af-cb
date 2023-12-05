@@ -6,7 +6,7 @@ ProjectilePool::ProjectilePool(size_t poolSize)
     for (size_t i = 0; i < poolSize; ++i)
     {
         auto projectile = projectileFactory.CreateProjectile({0, 0}, {0, 0});
-        projectile.enabled = false;
+        projectile->Enabled = false;
         pool.push_back(std::move(projectile));
     }
 }
@@ -19,13 +19,16 @@ std::unique_ptr<Projectile> ProjectilePool::AcquireObject(float2 position, float
         pool.pop_back();
         projectile->SetPosition(position);
         projectile->direction = direction;
-        projectile->enabled = true;
+        projectile->Enabled = true;
         return projectile;
     }
-    return projectileFactory.CreateProjectile(position, direction);
+    auto projectile = projectileFactory.CreateProjectile(position, direction);
+    projectile->Enabled = true;
+    return projectile;
 }
 
-void ProjectilePool::ReleaseObject(std::unique_ptr<Projectile> object)
+void ProjectilePool::ReleaseObject(std::unique_ptr<Projectile> projectile)
 {
-    pool.push_back(std::move(object));
+    projectile->Enabled = false;
+    pool.push_back(std::move(projectile));
 }

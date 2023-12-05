@@ -16,5 +16,5 @@ public:
     ProjectilePool(size_t poolSize);
 
     std::unique_ptr<Projectile> AcquireObject(float2 position, float2 direction);
-    void ReleaseObject(std::unique_ptr<Projectile> object);
+    void ReleaseObject(std::unique_ptr<Projectile> projectile);
 };
