@@ -8,9 +8,9 @@ Core::Core(): e(), LastFrameTime(0)
 {
     quit = false;
 
-    projectilePool = new ProjectilePool(1);
+    projectilePool = new ProjectilePool(10);
     
-    projectile = projectilePool->AcquireObject({10, 10}, {0, 10});
+    Actors.push_back(std::move(projectilePool->AcquireObject({10, 10}, {100, 10})));
     
     input_handler = new InputHandler();
 }

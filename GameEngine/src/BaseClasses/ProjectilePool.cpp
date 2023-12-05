@@ -6,6 +6,7 @@ ProjectilePool::ProjectilePool(size_t poolSize)
     for (size_t i = 0; i < poolSize; ++i)
     {
         auto projectile = projectileFactory.CreateProjectile({0, 0}, {0, 0});
+        projectile.enabled = false;
         pool.push_back(std::move(projectile));
     }
 }
@@ -14,11 +15,12 @@ std::unique_ptr<Projectile> ProjectilePool::AcquireObject(float2 position, float
 {
     if (!pool.empty())
     {
-        auto object = std::move(pool.back());
+        auto projectile = std::move(pool.back());
         pool.pop_back();
-        object->SetPosition(position);
-        object->direction = direction;
-        return object;
+        projectile->SetPosition(position);
+        projectile->direction = direction;
+        projectile->enabled = true;
+        return projectile;
     }
     return projectileFactory.CreateProjectile(position, direction);
 }
