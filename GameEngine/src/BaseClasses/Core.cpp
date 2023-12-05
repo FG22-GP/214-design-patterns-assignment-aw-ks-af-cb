@@ -96,6 +96,7 @@ void Core::UpdateObjects()
     
     for (int i = 0; i < Actors.size(); i++)
     {
+        if (!Actors[i]->Enabled) continue;
         Actors[i].get()->Update(deltaTime);
     }
 }
@@ -111,6 +112,7 @@ void Core::RenderPass(SDL_Renderer* renderer)
     
     for (int i = 0; i < Actors.size(); i++)
     {
+        if (!Actors[i]->Enabled) continue;
         Actors[i]->RenderPass(renderer);
     }
 
