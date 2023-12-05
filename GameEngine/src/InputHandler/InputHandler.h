@@ -1,6 +1,7 @@
 ﻿#pragma once
 #include <SDL.h>
 #include <functional>
+#include <iostream>
 
 class InputHandler
 {
@@ -27,35 +28,41 @@ public:
         mouseClicked = false;
     }
     
-    void HandleKeyInputs(SDL_KeyCode key_code)
+    void HandleKeyDownInputs(SDL_Keycode key_code)
     {
-        const Uint8* keyboardState = SDL_GetKeyboardState(NULL);
+        switch (key_code)
+        {
+        case SDLK_w:
+            UpKey = true;
+            break;
+        case SDLK_s:
+            DownKey = true;
+            break;
+        case SDLK_a:
+            LeftKey= true;
+            break;
+        case SDLK_d:
+            RightKey = true;
+            break;
+        }
+    }
+
+    void HandleKeyUpInputs(SDL_Keycode key_code)
+    {
 
         switch (key_code)
         {
         case SDLK_w:
-            if(keyboardState[SDLK_w])
-            {
-                UpKey = true;
-            }
+            UpKey = false;
             break;
         case SDLK_s:
-            if(keyboardState[SDLK_s])
-            {
-                DownKey = true;
-            }
+            DownKey = false;
             break;
         case SDLK_a:
-            if(keyboardState[SDLK_a])
-            {
-                LeftKey= true;
-            }
+            LeftKey = false;
             break;
         case SDLK_d:
-            if(keyboardState[SDLK_d])
-            {
-                RightKey = true;
-            }
+            RightKey = false;
             break;
         }
     }
@@ -77,28 +84,30 @@ public:
        // }
     }
 
-    void HandleInputEvents(float2 keyInput, float2 mouseInput)
+    void HandleInputEvents()
     {
+        Input->X = Input->Y = 0;
+        
         if(UpKey)
-            keyInput.Y += 1;
-        else if(DownKey)
-            keyInput.Y -= 1;
-        else if(LeftKey)
-            keyInput.X += 1;
-        else if(RightKey)
-            keyInput.X -= 1;
-        
-        if(MoveInput)
-            MoveInput(keyInput);
+            Input->Y += -1;
+        if(DownKey)
+            Input->Y += 1;
+        if(LeftKey)
+            Input->X += -1;
+        if(RightKey)
+            Input->X += 1;
 
-        if(MouseInput)
-            MouseInput(mouseInput);
         
-        UpKey = false;
-        DownKey = false;
-        LeftKey = false;
-        RightKey = false;
-
-        keyInput = float2(0, 0);
+        
+        // if(MoveInput)
+        //     MoveInput(keyInput);
+        //
+        // if(MouseInput)
+        //     MouseInput(mouseInput);
+        
+        // UpKey = false;
+        // DownKey = false;
+        // LeftKey = false;
+        // RightKey = false;
     }
 };

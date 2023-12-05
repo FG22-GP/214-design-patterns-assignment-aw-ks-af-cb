@@ -3,6 +3,7 @@
 #include <iostream>
 #include <SDL_timer.h>
 
+
 Core::Core(): e(), LastFrameTime(0)
 {
     quit = false;
@@ -18,8 +19,9 @@ Core::Core(): e(), LastFrameTime(0)
     Rect->y = 100;
     Rect->w = 100;
     Rect->h = 100;
-    
-    Player = new Actor(Rect, "./img/charmander.png", 10);
+
+    input_handler = new InputHandler();
+    Player = new class Player(Rect, "./img/charmander.png", 10, 1, float2(0,0), input_handler);
 }
 
 Core::~Core()
@@ -47,34 +49,17 @@ void Core::Inputs()
             }
         case SDL_KEYDOWN:
             {
-                switch (e.key.keysym.sym)
-                {
-                case SDLK_DOWN:
-                    {
-                        Input->Y = 1;
-                        break;
-                    }
-                case SDLK_UP:
-                    {
-                        Input->Y = -1;
-                        break;
-                    }
-                case SDLK_RIGHT:
-                    {
-                        Input->X = 1;
-                        break;
-                    }
-                case SDLK_LEFT:
-                    {
-                        Input->X = -1;
-                        break;
-                    }
-                }
+                input_handler->HandleKeyDownInputs(e.key.keysym.sym);
+                break;
             }
-            break;
+        case SDL_KEYUP:
+            {
+                input_handler->HandleKeyUpInputs(e.key.keysym.sym);
+            }
             
         }
     }
+    input_handler->HandleInputEvents();
 }
 
 void Core::UpdateObjects()

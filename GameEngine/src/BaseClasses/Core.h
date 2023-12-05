@@ -4,6 +4,8 @@
 
 #include "Actor.h"
 #include "ProjectilePool.h"
+#include "../Actors/Player.h"
+#include "../InputHandler/InputHandler.h"
 
 class Core
 {
@@ -16,11 +18,13 @@ public:
 public:
     std::vector<Actor*> Actors;
 
-    Actor* Player;
+    Player* Player;
 
     ProjectilePool* projectilePool;
 
     float2* Input = new float2(0,0);
+
+    InputHandler* input_handler;
 private:
     bool quit = false;
     float LastFrameTime;
