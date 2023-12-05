@@ -14,9 +14,9 @@ Player::Player(
 {
 }
 
-void Player::Fire()
+void Player::Fire(float2* mousePosition)
 {
-    
+    std::cout << "Fire" << std::endl;
 }
 
 void Player::Aim()

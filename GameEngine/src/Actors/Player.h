@@ -10,7 +10,7 @@ public:
     Player(SDL_Rect* rect, const char filePath[], int collisionRadius, float speed, float2 direction);
     ~Player() override = default;
     
-    void Fire();
+    void Fire(float2* mousePosition);
     void Aim();
     void Move(float2* input);
     void Update(float DeltaTime) override;

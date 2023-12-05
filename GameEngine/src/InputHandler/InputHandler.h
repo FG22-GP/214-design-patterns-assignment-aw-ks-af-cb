@@ -14,7 +14,7 @@ public:
     float2* Input;
     float2* MousePosition;
     
-    bool mouseClicked;
+    bool mouseClicked = false;
 
     bool LeftKey = false;
     bool RightKey = false;
@@ -66,26 +66,26 @@ public:
         }
     }
 
-    void HandleMouseInput(float2 MouseInput)
+    void HandleMouseButtonDownInput(SDL_MouseButtonEvent MouseCode)
     {
-       // switch (MouseInput)
-       // {
-       // case SDL_MOUSEBUTTONDOWN:
-       //     mouseClicked = true;
-       //     break;
-       // case SDL_MOUSEBUTTONUP:
-       //     mouseClicked = false;
-       //     break;
-       // case SDL_MOUSEMOTION:
-       //     MousePosition->X = MouseInput->X;
-       //     MousePosition->Y = MouseInput->Y;
-       //     break;
-       // }
+        if (MouseCode.button == SDL_BUTTON_LEFT)
+        {
+            mouseClicked = true;
+        }
+    }
+    
+    void HandleMouseButtonUpInput(SDL_MouseButtonEvent MouseCode)
+    {
+        if (MouseCode.button == SDL_BUTTON_LEFT)
+        {
+            mouseClicked = false;
+        }
     }
 
     void HandleInputEvents()
     {
         Input->X = Input->Y = 0;
+        MousePosition->X = MousePosition->Y = 0;
         
         if(UpKey)
             Input->Y += -1;
@@ -95,13 +95,14 @@ public:
             Input->X += -1;
         if(RightKey)
             Input->X += 1;
-
         
         
         if(MoveInput)
             MoveInput(Input);
         
-        // if(MouseInput)
-        //     MouseInput(mouseInput);
+         if(MouseInput && mouseClicked)
+             MouseInput(MousePosition);
+
+        mouseClicked = false;
     }
 };
