@@ -13,6 +13,7 @@ public:
     
 #pragma region Params
 public:
+    bool Enabled = true;
     SDL_Rect* Rect;
     int CollisionRadius;
     bool ShouldBeDestroyed;
