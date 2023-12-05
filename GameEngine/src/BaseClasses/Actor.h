@@ -13,12 +13,14 @@ public:
     
 #pragma region Params
 public:
+    bool Enabled = true;
     SDL_Rect* Rect;
     int CollisionRadius;
     bool ShouldBeDestroyed;
 protected:
     SDL_Surface* image;
     float DeltaTime = 0;
+    float2 Offset;
 #pragma endregion
     
 

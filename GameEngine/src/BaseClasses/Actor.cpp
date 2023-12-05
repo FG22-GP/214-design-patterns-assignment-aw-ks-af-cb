@@ -11,6 +11,7 @@ Actor::Actor(SDL_Rect* Rect, const char* FilePath, int CollisionRadius)
     this->Rect = Rect;
     this->image = IMG_Load(FilePath);
     this->CollisionRadius = CollisionRadius;
+    Offset = float2(Rect->w/2, Rect->h/2);
 
     Core::Actors.push_back(std::unique_ptr<Actor>(this));
 }
@@ -37,7 +38,12 @@ void Actor::RenderPass(SDL_Renderer* renderer)
     if (renderer == nullptr)
         return;
     SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, image);
-    SDL_RenderCopy(renderer, texture, nullptr, Rect);
+
+    SDL_Rect tempRect = *Rect;
+    tempRect.x += Offset.X;
+    tempRect.y += Offset.Y;
+    
+    SDL_RenderCopy(renderer, texture, nullptr, &tempRect);
     SDL_DestroyTexture(texture);
 }
 
