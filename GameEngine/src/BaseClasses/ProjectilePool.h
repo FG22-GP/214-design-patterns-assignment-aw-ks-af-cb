@@ -9,12 +9,12 @@
 class ProjectilePool
 {
 private:
-    std::vector<Projectile*> pool;
+    std::vector<std::unique_ptr<Projectile>> pool;
     ProjectileFactory projectileFactory;
 
 public:
     ProjectilePool(size_t poolSize);
 
-    Projectile* AcquireObject(float2 position, float2 direction);
-    void ReleaseObject(Projectile* object);
+    std::unique_ptr<Projectile> AcquireObject(float2 position, float2 direction);
+    void ReleaseObject(std::unique_ptr<Projectile> object);
 };
