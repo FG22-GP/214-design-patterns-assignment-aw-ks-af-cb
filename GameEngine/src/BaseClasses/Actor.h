@@ -1,4 +1,5 @@
 ﻿#pragma once
+#include <memory>
 #include <SDL_rect.h>
 #include <SDL_render.h>
 #include "../Struct/float2.h"
@@ -8,14 +9,18 @@ class Actor : public Object
 {
 public:
     Actor(SDL_Rect* Rect,const char FilePath[], int CollisionRadius);
+    ~Actor() override = default;
     
 #pragma region Params
 public:
     SDL_Rect* Rect;
     int CollisionRadius;
+    bool ShouldBeDestroyed;
 protected:
     SDL_Surface* image;
+    float DeltaTime = 0;
 #pragma endregion
+    
 
 #pragma region Functions
 public:

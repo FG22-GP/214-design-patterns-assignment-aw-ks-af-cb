@@ -4,7 +4,7 @@
 class Object
 {
 public:
-    virtual ~Object();
+    virtual ~Object() = default;
     virtual void Update(float DeltaTime);
     
 };

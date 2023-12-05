@@ -69,7 +69,8 @@ int main(int argc, char* args[])
 		core->UpdateObjects();
 		core->Collision();
 		core->RenderPass(renderer);
-
+		core->Cleanup();
+		
 		SDL_Delay(0); // can be used to wait for a certain amount of ms
 	}
 
