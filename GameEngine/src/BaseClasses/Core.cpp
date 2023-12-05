@@ -3,6 +3,9 @@
 #include <iostream>
 #include <SDL_timer.h>
 
+#include "../Actors/Asteroid.h"
+#include "../Collision/CollisionHandler.h"
+
 
 Core::Core(): e(), LastFrameTime(0)
 {
@@ -103,6 +106,27 @@ void Core::UpdateObjects()
 
 void Core::Collision()
 {
+    for (int i = 0; i < Actors.size(); ++i)
+    {
+        Asteroid* asteroid = dynamic_cast<Asteroid*>(Actors[i].get());
+
+        if (!asteroid) continue;
+        std::cout << "Asteroid Found" << std::endl;
+        for (int j = 0; j < Actors.size(); ++j)
+        {
+            Player* player = dynamic_cast<Player*>(Actors[j].get());
+            
+
+            if (!player) continue;
+            std::cout << "Player Found" << std::endl;
+
+            if (CollisionHandler::Collided(player->GetPosition(), player->CollisionRadius, asteroid->GetPosition(), asteroid->CollisionRadius))
+            {
+                std::cout << "Player" << std::endl;
+            }
+
+        }
+    }
 }
 
 void Core::RenderPass(SDL_Renderer* renderer)
