@@ -19,6 +19,7 @@ public:
 protected:
     SDL_Surface* image;
     float DeltaTime = 0;
+    float2 Offset;
 #pragma endregion
     
 
