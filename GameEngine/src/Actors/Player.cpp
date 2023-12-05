@@ -2,6 +2,7 @@
 
 #include <iostream>
 
+#include "../BaseClasses/Core.h"
 #include "../InputHandler/InputHandler.h"
 
 
@@ -12,6 +13,11 @@ Player::Player(
     float speed,
     float2 direction) : Actor(rect, filePath, collisionRadius), IVelocity(speed, direction)
 {
+}
+
+Player::~Player()
+{
+    Core::RemoveBinding();
 }
 
 void Player::Fire(float2* mousePosition)
