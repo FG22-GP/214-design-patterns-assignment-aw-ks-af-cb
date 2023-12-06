@@ -43,10 +43,19 @@ void Actor::RenderPass(SDL_Renderer* renderer)
     if (renderer == nullptr)
         return;
     
-    Rect->x = static_cast<int>(std::floor(Position.X - Offset.X));
-    Rect->y = static_cast<int>(std::floor(Position.Y - Offset.Y));
+    Rect->x = static_cast<int>((Position.X - Offset.X));
+    Rect->y = static_cast<int>((Position.Y - Offset.Y));
     
     SDL_RenderCopy(renderer, texture, nullptr, Rect);
+
+    SDL_Rect* newRect = new SDL_Rect;
+
+    newRect->x = Position.X;
+    newRect->y = Position.Y;
+    newRect->w = 10;
+    newRect->h = 10;
+
+    SDL_RenderCopy(renderer, texture, nullptr, newRect);
 }
 
 void Actor::Destroy()

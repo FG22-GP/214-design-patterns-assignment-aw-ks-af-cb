@@ -37,6 +37,8 @@ public:
         return std::to_string(X) + " " + std::to_string(Y);
     }
 
+    static float DotProduct(const float2& v1, const float2& v2);
+    static float AngleBetweenNormalized(const float2& v1, const float2& v2);
     float2 Normalize();
     float Magnitude();
     static float Magnitude(float2 Vector);

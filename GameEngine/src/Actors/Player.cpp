@@ -22,6 +22,7 @@ Player::~Player()
 
 void Player::Fire(float2* mousePosition)
 {
+    std::cout << float2::AngleBetweenNormalized(*mousePosition, GetPosition()) << std::endl;
 }
 
 void Player::Aim(float2* mousePosition)
