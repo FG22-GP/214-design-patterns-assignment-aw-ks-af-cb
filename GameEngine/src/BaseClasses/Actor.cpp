@@ -33,6 +33,11 @@ void Actor::SetPosition(float2 Position)
     this->Position = Position;
 }
 
+void Actor::AddPositionOffset(float2 DeltaPosition)
+{
+    SetPosition(GetPosition() + DeltaPosition);
+}
+
 void Actor::RenderPass(SDL_Renderer* renderer)
 {
     if (renderer == nullptr)
