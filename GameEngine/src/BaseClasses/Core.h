@@ -1,5 +1,4 @@
 ﻿#pragma once
-#include <list>
 #include <SDL_events.h>
 
 #include "Actor.h"
@@ -10,7 +9,7 @@
 class Core
 {
 public:
-    Core();
+    Core(SDL_Renderer* renderer);
     ~Core();
 
     SDL_Event e;
@@ -21,6 +20,8 @@ public:
     static inline ProjectilePool* projectilePool;
     
     static inline InputHandler* input_handler;
+
+    static inline SDL_Renderer* renderer;
 
     static void RemoveBinding();
 private:

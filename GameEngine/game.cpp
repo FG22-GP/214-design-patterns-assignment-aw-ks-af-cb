@@ -55,7 +55,7 @@ int main(int argc, char* args[])
 
 	bool quit = false;
 
-	Core* core = new Core();
+	Core* core = new Core(renderer);
 
 	core->Start();
 

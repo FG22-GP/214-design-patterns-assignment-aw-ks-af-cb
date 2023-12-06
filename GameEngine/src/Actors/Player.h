@@ -14,4 +14,9 @@ public:
     void Aim(float2* mousePosition);
     void Move(float2* input);
     void Update(float DeltaTime) override;
+
+protected:
+    float2 AimPosition;
+
+    float2 GetAimDirection();
 };

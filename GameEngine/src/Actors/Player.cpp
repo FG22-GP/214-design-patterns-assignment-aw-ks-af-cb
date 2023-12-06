@@ -22,22 +22,25 @@ Player::~Player()
 
 void Player::Fire(float2* mousePosition)
 {
-    std::cout << "Fire" << std::endl;
 }
 
 void Player::Aim(float2* mousePosition)
 {
-    std::cout << " " << mousePosition->X << " : " << mousePosition->Y << std::endl; 
+    AimPosition = *mousePosition;
 }
 
 void Player::Move(float2* input)
 {
-    Rect->x += input->X;
-    Rect->y += input->Y;
+    const float2 Position = GetPosition();
+    SetPosition(Position + *input);
 }
 
 void Player::Update(float DeltaTime)
 {
     Actor::Update(DeltaTime);
+}
 
+float2 Player::GetAimDirection()
+{
+    return (AimPosition - GetPosition()).Normalize();
 }

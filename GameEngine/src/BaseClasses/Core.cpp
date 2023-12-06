@@ -7,7 +7,7 @@
 #include "../Collision/CollisionHandler.h"
 
 
-Core::Core(): e(), LastFrameTime(0)
+Core::Core(SDL_Renderer* renderer): e(), LastFrameTime(0)
 {
     quit = false;
 
@@ -16,6 +16,8 @@ Core::Core(): e(), LastFrameTime(0)
     Actors.push_back(std::move(projectilePool->AcquireObject({10, 10}, {100, 10})));
     
     input_handler = new InputHandler();
+
+    Core::renderer = renderer;
 }
 
 Core::~Core()
@@ -92,15 +94,15 @@ void Core::UpdateObjects()
 {
     float Time;
     
-    Time = (SDL_GetTicks()) / 1000.f;
-
-    float deltaTime = Time - LastFrameTime;
+    Time = SDL_GetPerformanceCounter();
+    
+    float deltaTime = ((Time - LastFrameTime)*1000 / (double)SDL_GetPerformanceFrequency() );
     LastFrameTime = Time;
     
     for (int i = 0; i < Actors.size(); i++)
     {
         if (!Actors[i]->Enabled) continue;
-        Actors[i].get()->Update(deltaTime);
+        Actors[i]->Update(deltaTime);
     }
 }
 

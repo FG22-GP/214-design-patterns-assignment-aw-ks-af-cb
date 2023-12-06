@@ -8,8 +8,8 @@ Projectile::Projectile(SDL_Rect* rect, const char filePath[], int collisionRadiu
 
 void Projectile::Update(float DeltaTime)
 {
-    Rect->x += static_cast<int>(speed * direction.X * DeltaTime);
-    Rect->y += static_cast<int>(speed * direction.Y * DeltaTime);
+    // Rect->x += static_cast<int>(speed * direction.X * DeltaTime);
+    // Rect->y += static_cast<int>(speed * direction.Y * DeltaTime);
 }
 
 void Projectile::RenderPass(SDL_Renderer* renderer)
@@ -24,8 +24,8 @@ void Projectile::Destroy()
 
 void Projectile::Reset()
 {
-    Rect->x = 9999;
-    Rect->y = 9999;
+    // Rect->x = 9999;
+    // Rect->y = 9999;
     direction = {0, 0};
     speed = 0;
 }

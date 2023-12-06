@@ -6,6 +6,6 @@ Asteroid::Asteroid(SDL_Rect* rect, const char filePath[], int collisionRadius, f
 
 void Asteroid::Update(float deltaTime)
 {
-    Rect->x += static_cast<int>(speed * direction.X * deltaTime);
-    Rect->y += static_cast<int>(speed * direction.Y * deltaTime);
+    // Rect->x += static_cast<int>(speed * direction.X * deltaTime);
+    // Rect->y += static_cast<int>(speed * direction.Y * deltaTime);
 }

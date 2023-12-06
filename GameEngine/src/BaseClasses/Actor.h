@@ -9,24 +9,27 @@ class Actor : public Object
 {
 public:
     Actor(SDL_Rect* Rect,const char FilePath[], int CollisionRadius);
-    ~Actor() override = default;
+    ~Actor() override;
     
 #pragma region Params
 public:
     bool Enabled = true;
-    SDL_Rect* Rect;
     int CollisionRadius;
     bool ShouldBeDestroyed;
 protected:
-    SDL_Surface* image;
     float DeltaTime = 0;
+private:
+    SDL_Rect* Rect;
+    float2 Position;
     float2 Offset;
+
+    SDL_Texture* texture;
 #pragma endregion
     
 
 #pragma region Functions
 public:
-    float2 GetPosition();
+    float2 GetPosition() const;
     void SetPosition(float2 Position);
     virtual void RenderPass(SDL_Renderer* renderer);
     virtual void Destroy();
