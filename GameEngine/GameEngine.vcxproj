@@ -110,6 +110,7 @@
       <SDLCheck>true</SDLCheck>
       <LinkCompiled>true</LinkCompiled>
     </ClCompile>
+    <ClCompile Include="src\Interfaces\IDamageable.cpp" />
     <ClCompile Include="src\Interfaces\IVelocity.cpp" />
     <ClCompile Include="src\Struct\float2.cpp">
       <RuntimeLibrary>MultiThreadedDebugDll</RuntimeLibrary>
@@ -194,6 +195,7 @@
     <ClInclude Include="src\BaseClasses\Object.h" />
     <ClInclude Include="src\BaseClasses\ProjectilePool.h" />
     <ClInclude Include="src\Collision\CollisionHandler.h" />
+    <ClInclude Include="src\Interfaces\IDamageable.h" />
     <ClInclude Include="src\Struct\float2.h" />
     <ClInclude Include="src\Actors\Asteroid.h" />
     <ClInclude Include="src\Factories\AsteroidFactory.h" />

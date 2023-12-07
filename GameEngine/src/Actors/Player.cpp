@@ -11,8 +11,9 @@ Player::Player(
     const char filePath[],
     int collisionRadius,
     float speed,
-    float2 direction) : Actor(rect, filePath, collisionRadius), IVelocity(speed, direction)
+    float2 direction) : Actor(rect, filePath, collisionRadius), IVelocity(speed, direction), MaxHealth(3)
 {
+    CurrentHealth = MaxHealth;
 }
 
 Player::~Player()
@@ -43,6 +44,16 @@ void Player::Move(float2* input)
 void Player::Update(float DeltaTime)
 {
     Actor::Update(DeltaTime);
+}
+
+void Player::TakeDamage(int health)
+{
+    CurrentHealth -= health;
+
+    if(CurrentHealth <= 0)
+    {
+        Destroy();
+    }
 }
 
 float2 Player::GetAimDirection()

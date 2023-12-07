@@ -121,7 +121,8 @@ void Core::Collision()
 
             if (CollisionHandler::Collided(player->GetPosition(), player->CollisionRadius, asteroid->GetPosition(), asteroid->CollisionRadius))
             {
-                //Player gets damaged
+                player->TakeDamage(1);
+                //Destroy asteroid as well
             }
         }
 
