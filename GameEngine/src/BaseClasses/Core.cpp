@@ -112,20 +112,29 @@ void Core::Collision()
         Asteroid* asteroid = dynamic_cast<Asteroid*>(Actors[i].get());
 
         if (!asteroid) continue;
-        std::cout << "Asteroid Found" << std::endl;
+        
         for (int j = 0; j < Actors.size(); ++j)
         {
             Player* player = dynamic_cast<Player*>(Actors[j].get());
             
-
             if (!player) continue;
-            std::cout << "Player Found" << std::endl;
 
             if (CollisionHandler::Collided(player->GetPosition(), player->CollisionRadius, asteroid->GetPosition(), asteroid->CollisionRadius))
             {
-                std::cout << "Player" << std::endl;
+                //Player gets damaged
             }
+        }
 
+        for (int k = 0; k < Actors.size(); ++k)
+        {
+            Projectile* projectile = dynamic_cast<Projectile*>(Actors[k].get());
+
+            if(!projectile) continue;
+
+            if(CollisionHandler::Collided(projectile->GetPosition(), projectile->CollisionRadius, asteroid->GetPosition(), asteroid->CollisionRadius))
+            {
+                //Destroy both projectiles and the asteroid? 
+            }
         }
     }
 }
