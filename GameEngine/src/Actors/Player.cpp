@@ -27,6 +27,8 @@ void Player::Fire(float2* mousePosition)
     float2 aimDirection = GetAimDirection();
 
     float2 spawnPosition = GetPosition() + aimDirection * 100;
+
+    Core::projectilePool->AcquireObject(spawnPosition, aimDirection);
 }
 
 void Player::Aim(float2* mousePosition)
