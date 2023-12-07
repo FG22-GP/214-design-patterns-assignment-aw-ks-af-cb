@@ -5,6 +5,7 @@
 
 #include "../Actors/Asteroid.h"
 #include "../Collision/CollisionHandler.h"
+#include "UI.h"
 
 
 Core::Core(SDL_Renderer* renderer): e(), LastFrameTime(0)
@@ -14,8 +15,9 @@ Core::Core(SDL_Renderer* renderer): e(), LastFrameTime(0)
     projectilePool = new ProjectilePool(10);
     
     input_handler = new InputHandler();
-
+    
     Core::renderer = renderer;
+    
 }
 
 Core::~Core()
@@ -39,10 +41,11 @@ void Core::Start()
     Rect->w = 100;
     Rect->h = 100;
 
-    Player* Player = new class Player(Rect, "./img/charmander.png", 10, 1, float2(0,0));
-    input_handler->MoveInput = std::bind(&Player::Move, Player, std::placeholders::_1);
-    input_handler->MouseInput = std::bind(&Player::Fire, Player, std::placeholders::_1);
-    input_handler->MouseMotion = std::bind(&Player::Aim, Player, std::placeholders::_1);
+    player = std::make_unique<Player>(Rect, "./img/charmander.png", 10, 1, float2(0,0));
+    ui = std::make_unique<UI>();
+    input_handler->MoveInput = std::bind(&Player::Move, player.get(), std::placeholders::_1);
+    input_handler->MouseInput = std::bind(&Player::Fire, player.get(), std::placeholders::_1);
+    input_handler->MouseMotion = std::bind(&Player::Aim, player.get(), std::placeholders::_1);
 }
 
 void Core::Inputs()
@@ -94,7 +97,7 @@ void Core::UpdateObjects()
 
     const float DeltaTime = (CurrentTime - LastFrameTime) / 1000.0f;
     
-    LastFrameTime = CurrentTime;
+    LastFrameTime = (float)CurrentTime;
     
     for (int i = 0; i < Actors.size(); i++)
     {
@@ -114,10 +117,8 @@ void Core::Collision()
         
         for (int j = 0; j < Actors.size(); ++j)
         {
-            Player* player = dynamic_cast<Player*>(Actors[j].get());
-            
             if (!player) continue;
-
+            
             if (CollisionHandler::Collided(player->GetPosition(), player->CollisionRadius, asteroid->GetPosition(), asteroid->CollisionRadius))
             {
                 player->TakeDamage(1);
@@ -143,14 +144,13 @@ void Core::RenderPass(SDL_Renderer* renderer)
 {
     SDL_SetRenderDrawColor(renderer, 120, 60, 255, 255);
     SDL_RenderClear(renderer);
-    
+
+    RenderUI();
     for (int i = 0; i < Actors.size(); i++)
     {
         if (!Actors[i]->Enabled) continue;
         Actors[i]->RenderPass(renderer);
     }
-
-
     SDL_RenderPresent(renderer);
 }
 
@@ -163,4 +163,9 @@ void Core::Cleanup()
             Actors.erase(Actors.begin() + i);
         }
     }
+}
+
+void Core::RenderUI()
+{
+    ui->RenderHealth(player->GetCurrentHealth()); 
 }

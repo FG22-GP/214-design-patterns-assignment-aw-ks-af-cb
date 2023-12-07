@@ -65,7 +65,7 @@ int main(int argc, char* args[])
 		core->Inputs();
 		quit = core->Quit();
 		if (quit) break;
-
+		
 		core->UpdateObjects();
 		core->Collision();
 		core->RenderPass(renderer);

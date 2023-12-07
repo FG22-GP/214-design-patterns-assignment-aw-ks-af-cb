@@ -5,6 +5,7 @@
 #include "ProjectilePool.h"
 #include "../Actors/Player.h"
 #include "../InputHandler/InputHandler.h"
+#include "UI.h"
 
 class Core
 {
@@ -23,7 +24,11 @@ public:
 
     static inline SDL_Renderer* renderer;
 
+    static inline std::unique_ptr<UI> ui;
+    
     static void RemoveBinding();
+
+    static inline std::unique_ptr<Player> player;
 private:
     bool quit = false;
     float LastFrameTime;
@@ -34,7 +39,7 @@ public:
     void Collision();
     void RenderPass(SDL_Renderer* renderer);
     void Cleanup();
-
+    void RenderUI();
     bool Quit()
     {
         return quit;

@@ -3,6 +3,7 @@
 #include <iostream>
 
 #include "../BaseClasses/Core.h"
+#include "../BaseClasses/UI.h"
 #include "../InputHandler/InputHandler.h"
 
 
@@ -11,7 +12,7 @@ Player::Player(
     const char filePath[],
     int collisionRadius,
     float speed,
-    float2 direction) : Actor(rect, filePath, collisionRadius), IVelocity(speed, direction), MaxHealth(3)
+    float2 direction) : Actor(rect, filePath, collisionRadius), IVelocity(speed, direction)
 {
     CurrentHealth = MaxHealth;
 }
@@ -54,6 +55,12 @@ void Player::TakeDamage(int health)
     {
         Destroy();
     }
+    
+}
+
+int Player::GetCurrentHealth()
+{
+    return CurrentHealth;
 }
 
 float2 Player::GetAimDirection()

@@ -16,12 +16,14 @@ public:
     void Move(float2* input);
     void Update(float DeltaTime) override;
     void TakeDamage(int health) override;
+
+    int GetCurrentHealth();
     
 protected:
     float2 AimPosition;
 
     float2 GetAimDirection();
 
-    int MaxHealth;
+    int MaxHealth = 3;
     int CurrentHealth;
 };
