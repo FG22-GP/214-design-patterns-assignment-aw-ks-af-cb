@@ -17,5 +17,5 @@ public:
     ProjectileFactory();
     ~ProjectileFactory() = default;
     
-    std::unique_ptr<Projectile> CreateProjectile(float2 position, float2 direction) const;
+    Projectile* CreateProjectile(float2 position, float2 direction) const;
 };

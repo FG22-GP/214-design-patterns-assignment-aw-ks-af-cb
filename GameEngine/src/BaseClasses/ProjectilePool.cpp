@@ -1,5 +1,7 @@
 ﻿#include "ProjectilePool.h"
 
+#include <iostream>
+
 ProjectilePool::ProjectilePool(size_t poolSize)
 {
     // Initialize the object pool with objects
@@ -11,7 +13,7 @@ ProjectilePool::ProjectilePool(size_t poolSize)
     }
 }
 
-std::unique_ptr<Projectile> ProjectilePool::AcquireObject(float2 position, float2 direction)
+Projectile* ProjectilePool::AcquireObject(float2 position, float2 direction)
 {
     if (!pool.empty())
     {
@@ -20,6 +22,7 @@ std::unique_ptr<Projectile> ProjectilePool::AcquireObject(float2 position, float
         projectile->SetPosition(position);
         projectile->direction = direction;
         projectile->Enabled = true;
+        std::cout << "From Pool, Size: " << pool.size() << std::endl ;
         return projectile;
     }
     auto projectile = projectileFactory.CreateProjectile(position, direction);
@@ -27,8 +30,8 @@ std::unique_ptr<Projectile> ProjectilePool::AcquireObject(float2 position, float
     return projectile;
 }
 
-void ProjectilePool::ReleaseObject(std::unique_ptr<Projectile> projectile)
+void ProjectilePool::ReleaseObject(Projectile* projectile)
 {
     projectile->Enabled = false;
-    pool.push_back(std::move(projectile));
+    pool.push_back(projectile);
 }

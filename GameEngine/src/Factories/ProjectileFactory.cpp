@@ -2,15 +2,15 @@
 
 ProjectileFactory::ProjectileFactory()
 {
-    defaultSize.X = 30;
-    defaultSize.Y = 30;
+    defaultSize.X = 30.f;
+    defaultSize.Y = 30.f;
     defaultFilePath = "./img/pikachu.png";
-    defaultCollisionRadius = static_cast<int>(defaultSize.X / 2);
-    defaultSpeed = 50;
+    defaultCollisionRadius = static_cast<int>(defaultSize.X / 2.f);
+    defaultSpeed = 10.f;
 }
 
-std::unique_ptr<Projectile> ProjectileFactory::CreateProjectile(float2 position, float2 direction) const
+Projectile* ProjectileFactory::CreateProjectile(float2 position, float2 direction) const
 {
-    auto* rect = new SDL_Rect{0,0,static_cast<int>(defaultSize.X), static_cast<int>(defaultSize.Y) };
-    return std::make_unique<Projectile>(rect, defaultFilePath, defaultCollisionRadius, defaultSpeed, direction);
+    auto* rect = new SDL_Rect{static_cast<int>(position.X),static_cast<int>(position.Y),static_cast<int>(defaultSize.X), static_cast<int>(defaultSize.Y) };
+    return new Projectile(rect, defaultFilePath, defaultCollisionRadius, defaultSpeed, direction);
 }
