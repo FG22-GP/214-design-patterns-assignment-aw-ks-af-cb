@@ -39,10 +39,11 @@ void Core::Start()
     Rect->w = 100;
     Rect->h = 100;
 
-    Player* Player = new class Player(Rect, "./img/charmander.png", 10, 1, float2(0,0));
-    input_handler->MoveInput = std::bind(&Player::Move, Player, std::placeholders::_1);
-    input_handler->MouseInput = std::bind(&Player::Fire, Player, std::placeholders::_1);
-    input_handler->MouseMotion = std::bind(&Player::Aim, Player, std::placeholders::_1);
+    player = std::make_unique<Player>(Rect, "./img/charmander.png", 10, 1, float2(0,0));
+    ui = std::make_unique<UI>();
+    input_handler->MoveInput = std::bind(&Player::Move, player.get(), std::placeholders::_1);
+    input_handler->MouseInput = std::bind(&Player::Fire, player.get(), std::placeholders::_1);
+    input_handler->MouseMotion = std::bind(&Player::Aim, player.get(), std::placeholders::_1);
 }
 
 void Core::Inputs()
@@ -114,7 +115,6 @@ void Core::Collision()
         
         for (int j = 0; j < Actors.size(); ++j)
         {
-            Player* player = dynamic_cast<Player*>(Actors[j].get());
             
             if (!player) continue;
 
@@ -149,8 +149,7 @@ void Core::RenderPass(SDL_Renderer* renderer)
         if (!Actors[i]->Enabled) continue;
         Actors[i]->RenderPass(renderer);
     }
-
-
+    
     SDL_RenderPresent(renderer);
 }
 
@@ -163,4 +162,9 @@ void Core::Cleanup()
             Actors.erase(Actors.begin() + i);
         }
     }
+}
+
+void Core::RenderUI()
+{
+    ui->RenderHealth(player->GetCurrentHealth()); 
 }
