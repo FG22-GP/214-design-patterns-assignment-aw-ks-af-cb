@@ -92,17 +92,16 @@ void Core::Inputs()
 
 void Core::UpdateObjects()
 {
-    float Time;
+    const Uint32 CurrentTime = SDL_GetTicks();
+
+    const float DeltaTime = (CurrentTime - LastFrameTime) / 1000.0f;
     
-    Time = SDL_GetPerformanceCounter();
-    
-    float deltaTime = ((Time - LastFrameTime)*1000 / (double)SDL_GetPerformanceFrequency() );
-    LastFrameTime = Time;
+    LastFrameTime = CurrentTime;
     
     for (int i = 0; i < Actors.size(); i++)
     {
         if (!Actors[i]->Enabled) continue;
-        Actors[i]->Update(deltaTime);
+        Actors[i]->Update(DeltaTime * 100);
     }
 }
 
