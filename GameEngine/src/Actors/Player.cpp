@@ -22,7 +22,11 @@ Player::~Player()
 
 void Player::Fire(float2* mousePosition)
 {
-    std::cout << float2::AngleBetweenNormalized(*mousePosition, GetPosition()) << std::endl;
+    float2 aimDirection = GetAimDirection();
+
+    float2 spawnPosition = GetPosition() + aimDirection * 100;
+    
+    // Core::projectilePool->AcquireObject(spawnPosition, aimDirection);
 }
 
 void Player::Aim(float2* mousePosition)
@@ -33,7 +37,7 @@ void Player::Aim(float2* mousePosition)
 void Player::Move(float2* input)
 {
     const float2 Position = GetPosition();
-    SetPosition(Position + *input);
+    SetPosition(Position + *input * DeltaTime);
 }
 
 void Player::Update(float DeltaTime)
