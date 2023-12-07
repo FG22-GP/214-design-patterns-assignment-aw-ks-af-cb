@@ -27,8 +27,6 @@ void Player::Fire(float2* mousePosition)
     float2 aimDirection = GetAimDirection();
 
     float2 spawnPosition = GetPosition() + aimDirection * 100;
-    
-    // Core::projectilePool->AcquireObject(spawnPosition, aimDirection);
 }
 
 void Player::Aim(float2* mousePosition)
@@ -39,7 +37,7 @@ void Player::Aim(float2* mousePosition)
 void Player::Move(float2* input)
 {
     const float2 Position = GetPosition();
-    SetPosition(Position + *input * DeltaTime);
+    SetPosition(Position + *input * DeltaTime * 100);
 }
 
 void Player::Update(float DeltaTime)
