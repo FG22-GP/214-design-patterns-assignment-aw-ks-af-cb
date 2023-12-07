@@ -13,8 +13,6 @@ Core::Core(SDL_Renderer* renderer): e(), LastFrameTime(0)
 
     projectilePool = new ProjectilePool(10);
     
-    Actors.push_back(std::move(projectilePool->AcquireObject({10, 10}, {100, 10})));
-    
     input_handler = new InputHandler();
 
     Core::renderer = renderer;
@@ -100,6 +98,7 @@ void Core::UpdateObjects()
     
     for (int i = 0; i < Actors.size(); i++)
     {
+        // std::cout <<  << std::endl;
         if (!Actors[i]->Enabled) continue;
         Actors[i]->Update(DeltaTime * 100);
     }
@@ -162,7 +161,6 @@ void Core::Cleanup()
         if (Actors[i]->ShouldBeDestroyed)
         {
             Actors.erase(Actors.begin() + i);
-            
         }
     }
 }
