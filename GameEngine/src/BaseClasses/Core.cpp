@@ -42,6 +42,8 @@ void Core::Start()
     Rect->w = 100;
     Rect->h = 100;
 
+    asteroidPool->AcquireObject(float2(300,300), float2(1,1));
+    
     player = std::make_unique<Player>(Rect, "./img/charmander.png", 10, 1, float2(0,0));
     ui = std::make_unique<UI>();
     input_handler->MoveInput = std::bind(&Player::Move, player.get(), std::placeholders::_1);
@@ -110,6 +112,7 @@ void Core::UpdateObjects()
 
 void Core::Collision()
 {
+    if (!player) return;
     for (int i = 0; i < Actors.size(); ++i)
     {
         Asteroid* asteroid = dynamic_cast<Asteroid*>(Actors[i].get());
@@ -118,14 +121,24 @@ void Core::Collision()
         
         for (int j = 0; j < Actors.size(); ++j)
         {
-            
-            if (!player) continue;
-
             if (CollisionHandler::Collided(player->GetPosition(), player->CollisionRadius, asteroid->GetPosition(), asteroid->CollisionRadius))
             {
                 player->TakeDamage(1);
                 //Destroy asteroid as well
+                asteroid->Destroy();
+                continue;
             }
+            
+            Projectile* projectile = dynamic_cast<Projectile*>(Actors[j].get());
+            
+            if (!projectile) continue;
+            if (CollisionHandler::Collided(projectile->GetPosition(), projectile->CollisionRadius, asteroid->GetPosition(), asteroid->CollisionRadius))
+            {
+                asteroid->Destroy();
+                projectile->Destroy();
+            }
+            
+
         }
 
         for (int k = 0; k < Actors.size(); ++k)
