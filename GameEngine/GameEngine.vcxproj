@@ -32,6 +32,7 @@
     <ClCompile Include="src\Actors\Projectile.cpp" />
     <ClCompile Include="src\BaseClasses\Actor.cpp" />
     <ClCompile Include="src\Actors\Asteroid.cpp" />
+    <ClCompile Include="src\BaseClasses\AsteroidPool.cpp" />
     <ClCompile Include="src\BaseClasses\Core.cpp" />
     <ClCompile Include="src\BaseClasses\ProjectilePool.cpp" />
     <ClCompile Include="src\BaseClasses\UI.cpp" />
@@ -192,6 +193,7 @@
     <ClInclude Include="src\Actors\Player.h" />
     <ClInclude Include="src\Actors\Projectile.h" />
     <ClInclude Include="src\BaseClasses\Actor.h" />
+    <ClInclude Include="src\BaseClasses\AsteroidPool.h" />
     <ClInclude Include="src\BaseClasses\Core.h" />
     <ClInclude Include="src\BaseClasses\Object.h" />
     <ClInclude Include="src\BaseClasses\ProjectilePool.h" />
