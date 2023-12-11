@@ -3,6 +3,7 @@
 #include <iostream>
 #include <SDL_timer.h>
 
+#include "AsteroidPool.h"
 #include "../Actors/Asteroid.h"
 #include "../Collision/CollisionHandler.h"
 
@@ -13,6 +14,8 @@ Core::Core(SDL_Renderer* renderer): e(), LastFrameTime(0)
     quit = false;
 
     projectilePool = new ProjectilePool(10);
+
+    asteroidPool = new AsteroidPool(10);
     
     input_handler = new InputHandler();
 

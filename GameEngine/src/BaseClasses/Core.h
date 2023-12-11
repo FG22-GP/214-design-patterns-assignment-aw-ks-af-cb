@@ -7,6 +7,8 @@
 #include "../InputHandler/InputHandler.h"
 #include "UI.h"
 
+class AsteroidPool;
+
 class Core
 {
 public:
@@ -19,6 +21,9 @@ public:
     static inline std::vector<std::unique_ptr<Actor>> Actors;
     
     static inline ProjectilePool* projectilePool;
+
+
+    static inline AsteroidPool* asteroidPool;
     
     static inline InputHandler* input_handler;
 
