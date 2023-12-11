@@ -25,6 +25,7 @@ Actor::~Actor()
 {
     SDL_DestroyTexture(texture);
     std::cout << "Destroye Actor" << std::endl;
+    delete Rect;
 }
 
 float2 Actor::GetPosition() const
