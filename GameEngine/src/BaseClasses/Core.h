@@ -44,7 +44,6 @@ public:
     void Collision();
     void RenderPass(SDL_Renderer* renderer);
     void Cleanup();
-    void RenderUI();
     bool Quit()
     {
         return quit;
