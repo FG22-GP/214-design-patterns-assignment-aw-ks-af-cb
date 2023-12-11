@@ -24,7 +24,6 @@ Actor::Actor(SDL_Rect* Rect, const char* FilePath, int CollisionRadius)
 Actor::~Actor()
 {
     SDL_DestroyTexture(texture);
-    std::cout << "Destroye Actor" << std::endl;
     delete Rect;
 }
 
