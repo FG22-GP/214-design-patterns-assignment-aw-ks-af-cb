@@ -5,7 +5,7 @@ AsteroidPool::AsteroidPool(size_t poolSize)
     // Initialize the object pool with objects
     for (size_t i = 0; i < poolSize; ++i)
     {
-        auto projectile = projectileFactory.CreateAsteroid({0, 0}, {0, 0}, {0,0}, 10);
+        auto projectile = projectileFactory.CreateAsteroid({0, 0}, {50, 50}, {0,0}, 10);
         projectile->Enabled = false;
         pool.push_back(projectile);
     }

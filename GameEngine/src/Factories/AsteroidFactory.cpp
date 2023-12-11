@@ -3,7 +3,7 @@
 
 AsteroidFactory::AsteroidFactory()
 {
-    filePath = "Assets/Textures/Projectile.png";
+    filePath = "./img/asteroid.png";
 }
 
 Asteroid* AsteroidFactory::CreateAsteroid(float2 position, float2 size, float2 direction, float speed) const
