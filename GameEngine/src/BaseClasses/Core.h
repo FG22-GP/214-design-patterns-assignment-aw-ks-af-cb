@@ -22,6 +22,7 @@ public:
     
     static inline ProjectilePool* projectilePool;
 
+    static inline float2 MidPoint = float2(1024/2, 768/2);
 
     static inline AsteroidPool* asteroidPool;
     
