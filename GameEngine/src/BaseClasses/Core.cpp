@@ -148,7 +148,13 @@ void Core::RenderPass(SDL_Renderer* renderer)
 {
     SDL_SetRenderDrawColor(renderer, 120, 60, 255, 255);
     SDL_RenderClear(renderer);
-    ui->RenderText("Health: " + std::to_string(player->GetCurrentHealth()), 0, 0, { 255, 255, 255, 255 });
+    
+    ui->RenderText("Health: " + std::to_string(player->GetCurrentHealth()), 0, 0, { 255, 255, 255, 255 }, 24);
+
+    if(player->GetCurrentHealth() <= 0)
+    {
+        ui->RenderText("GAME OVER!", 250, 250, { 255, 255, 255, 255 }, 100); // change to middle of screen instead
+    }
     for (int i = 0; i < Actors.size(); i++)
     {
         if (!Actors[i]->Enabled) continue;
