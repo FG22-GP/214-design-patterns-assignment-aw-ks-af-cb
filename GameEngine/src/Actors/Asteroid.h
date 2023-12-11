@@ -10,4 +10,6 @@ public:
     ~Asteroid() override = default;
 
     void Update(float deltaTime) override;
+
+    void Destroy() override;
 };
