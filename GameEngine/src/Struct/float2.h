@@ -25,6 +25,19 @@ public:
         return {X*rhs, Y*rhs};
     }
 
+    float2 operator/(const float rhs)
+    {
+        return {X/rhs, Y/rhs};
+    }
+
+    float2& operator/= (const float2 rhs)
+    {
+        X /= rhs.X;
+        Y /= rhs.Y;
+        return *this;
+    }
+    
+
     float2& operator+= (const float2 rhs)
     {
         X += rhs.X;
