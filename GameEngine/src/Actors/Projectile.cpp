@@ -9,7 +9,6 @@ Projectile::Projectile(SDL_Rect* rect, const char filePath[], int collisionRadiu
 
 Projectile::~Projectile()
 {
-    std::cout << "Destroyed Projectile" << std::endl;
 }
 
 void Projectile::Update(float DeltaTime)
@@ -37,7 +36,6 @@ void Projectile::RenderPass(SDL_Renderer* renderer)
 void Projectile::Destroy()
 {
     // Actor::Destroy();
-    std::cout << "Back To Pool" << std::endl;
     Enabled = false;
     Lifetime = 0;
     Core::projectilePool->ReleaseObject(this);
