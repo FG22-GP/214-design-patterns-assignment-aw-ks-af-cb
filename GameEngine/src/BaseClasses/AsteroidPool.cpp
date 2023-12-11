@@ -1,13 +1,15 @@
 ﻿#include "AsteroidPool.h"
 
+#include <iostream>
+
 AsteroidPool::AsteroidPool(size_t poolSize)
 {
     // Initialize the object pool with objects
     for (size_t i = 0; i < poolSize; ++i)
     {
-        auto projectile = projectileFactory.CreateAsteroid({0, 0}, {50, 50}, {0,0}, 10);
-        projectile->Enabled = false;
-        pool.push_back(projectile);
+        const auto asteroid = asteroidFactory.CreateAsteroid({0, 0}, {50, 50}, {0,0}, 100);
+        asteroid->Enabled = false;
+        pool.push_back(asteroid);
     }
 }
 
@@ -15,16 +17,16 @@ Asteroid* AsteroidPool::AcquireObject(float2 position, float2 direction)
 {
     if (!pool.empty())
     {
-        auto projectile = std::move(pool.back());
+        const auto asteroid = pool.back();
         pool.pop_back();
-        projectile->SetPosition(position);
-        projectile->direction = direction;
-        projectile->Enabled = true;
-        return projectile;
+        asteroid->SetPosition(position);
+        asteroid->direction = direction;
+        asteroid->Enabled = true;
+        return asteroid;
     }
-    auto projectile = projectileFactory.CreateAsteroid(position, float2(1,1), direction, 10);
-    projectile->Enabled = true;
-    return projectile;
+    const auto asteroid = asteroidFactory.CreateAsteroid(position, float2(1,1), direction, 200);
+    asteroid->Enabled = true;
+    return asteroid;
 }
 
 void AsteroidPool::ReleaseObject(Asteroid* Object)

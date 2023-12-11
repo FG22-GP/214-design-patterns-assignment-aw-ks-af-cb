@@ -28,6 +28,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="game.cpp" />
+    <ClCompile Include="src\Actors\AsteroidSpawner.cpp" />
     <ClCompile Include="src\Actors\Player.cpp" />
     <ClCompile Include="src\Actors\Projectile.cpp" />
     <ClCompile Include="src\BaseClasses\Actor.cpp" />
@@ -190,6 +191,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Actors\AsteroidSpawner.h" />
     <ClInclude Include="src\Actors\Player.h" />
     <ClInclude Include="src\Actors\Projectile.h" />
     <ClInclude Include="src\BaseClasses\Actor.h" />

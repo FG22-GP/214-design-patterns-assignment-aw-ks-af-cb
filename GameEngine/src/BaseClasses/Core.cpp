@@ -19,11 +19,15 @@ Core::Core(SDL_Renderer* renderer): e(), LastFrameTime(0)
     
     input_handler = new InputHandler();
 
+    asteroidSpawner = new AsteroidSpawner(.2f, .7f, 300, MidPoint*2);
 }
 
 Core::~Core()
 {
     delete projectilePool;
+    delete asteroidPool;
+    delete asteroidSpawner;
+    delete input_handler;
 }
 
 void Core::RemoveBinding()
@@ -41,10 +45,6 @@ void Core::Start()
     Rect->y = 100;
     Rect->w = 100;
     Rect->h = 100;
-
-    asteroidPool->AcquireObject(float2(300,300), float2(1,1));
-    asteroidPool->AcquireObject(float2(500,300), float2(1,1));
-    asteroidPool->AcquireObject(float2(300,700), float2(1,1));
     
     player = std::make_unique<Player>(Rect, "./img/charmander.png", 10, 1, float2(0,0));
     ui = std::make_unique<UI>();
@@ -106,10 +106,11 @@ void Core::UpdateObjects()
     
     for (int i = 0; i < Actors.size(); i++)
     {
-        // std::cout <<  << std::endl;
         if (!Actors[i]->Enabled) continue;
         Actors[i]->Update(DeltaTime);
     }
+
+    asteroidSpawner->Update(DeltaTime);
 }
 
 void Core::Collision()
@@ -120,17 +121,21 @@ void Core::Collision()
         Asteroid* asteroid = dynamic_cast<Asteroid*>(Actors[i].get());
 
         if (!asteroid) continue;
+        if (!asteroid->Enabled) continue;
+
+        if (CollisionHandler::Collided(player->GetPosition(), player->CollisionRadius, asteroid->GetPosition(), asteroid->CollisionRadius))
+        {
+            asteroid->Destroy();
+            // player->TakeDamage(1);
+            continue;
+        }   
         
         for (int j = 0; j < Actors.size(); ++j)
         {
-            if (CollisionHandler::Collided(player->GetPosition(), player->CollisionRadius, asteroid->GetPosition(), asteroid->CollisionRadius))
-            {
-                std::cout << "Health " << player->GetCurrentHealth() << std::endl;
-                asteroid->Destroy();
-                player->TakeDamage(1);
-                std::cout << "Health " << player->GetCurrentHealth() << std::endl;
-                break;
-            }
+            if (!Actors[j]->Enabled) continue;
+            if (Actors[i] == Actors[j]) continue;
+            if (dynamic_cast<Player*>(Actors[j].get())) continue;
+            if (dynamic_cast<Asteroid*>(Actors[j].get())) continue;
             
             Projectile* projectile = dynamic_cast<Projectile*>(Actors[j].get());
             

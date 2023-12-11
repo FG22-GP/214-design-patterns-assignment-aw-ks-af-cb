@@ -6,6 +6,7 @@
 #include "../Actors/Player.h"
 #include "../InputHandler/InputHandler.h"
 #include "UI.h"
+#include "../Actors/AsteroidSpawner.h"
 
 class AsteroidPool;
 
@@ -38,6 +39,8 @@ public:
 private:
     bool quit = false;
     float LastFrameTime;
+
+    AsteroidSpawner* asteroidSpawner;
 public:
     void Start();
     void Inputs();

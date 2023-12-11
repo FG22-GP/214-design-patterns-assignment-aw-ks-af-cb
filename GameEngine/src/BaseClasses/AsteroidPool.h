@@ -8,7 +8,7 @@ class AsteroidPool
 {
 private:
     std::vector<Asteroid*> pool;
-    AsteroidFactory projectileFactory;
+    AsteroidFactory asteroidFactory;
 
 public:
     AsteroidPool(size_t poolSize);
