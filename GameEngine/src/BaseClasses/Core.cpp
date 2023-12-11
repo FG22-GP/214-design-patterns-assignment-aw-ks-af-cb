@@ -43,6 +43,8 @@ void Core::Start()
     Rect->h = 100;
 
     asteroidPool->AcquireObject(float2(300,300), float2(1,1));
+    asteroidPool->AcquireObject(float2(500,300), float2(1,1));
+    asteroidPool->AcquireObject(float2(300,700), float2(1,1));
     
     player = std::make_unique<Player>(Rect, "./img/charmander.png", 10, 1, float2(0,0));
     ui = std::make_unique<UI>();
@@ -123,10 +125,11 @@ void Core::Collision()
         {
             if (CollisionHandler::Collided(player->GetPosition(), player->CollisionRadius, asteroid->GetPosition(), asteroid->CollisionRadius))
             {
-                player->TakeDamage(1);
-                //Destroy asteroid as well
+                std::cout << "Health " << player->GetCurrentHealth() << std::endl;
                 asteroid->Destroy();
-                continue;
+                player->TakeDamage(1);
+                std::cout << "Health " << player->GetCurrentHealth() << std::endl;
+                break;
             }
             
             Projectile* projectile = dynamic_cast<Projectile*>(Actors[j].get());
@@ -137,20 +140,6 @@ void Core::Collision()
                 asteroid->Destroy();
                 projectile->Destroy();
             }
-            
-
-        }
-
-        for (int k = 0; k < Actors.size(); ++k)
-        {
-            Projectile* projectile = dynamic_cast<Projectile*>(Actors[k].get());
-
-            if(!projectile) continue;
-
-            if(CollisionHandler::Collided(projectile->GetPosition(), projectile->CollisionRadius, asteroid->GetPosition(), asteroid->CollisionRadius))
-            {
-                //Destroy both projectiles and the asteroid? 
-            }
         }
     }
 }
@@ -159,12 +148,13 @@ void Core::RenderPass(SDL_Renderer* renderer)
 {
     SDL_SetRenderDrawColor(renderer, 120, 60, 255, 255);
     SDL_RenderClear(renderer);
-    
+    ui->RenderText("Health: " + std::to_string(player->GetCurrentHealth()), 0, 0, { 255, 255, 255, 255 });
     for (int i = 0; i < Actors.size(); i++)
     {
         if (!Actors[i]->Enabled) continue;
         Actors[i]->RenderPass(renderer);
     }
+    
     
     SDL_RenderPresent(renderer);
 }
@@ -178,9 +168,4 @@ void Core::Cleanup()
             Actors.erase(Actors.begin() + i);
         }
     }
-}
-
-void Core::RenderUI()
-{
-    ui->RenderHealth(player->GetCurrentHealth()); 
 }

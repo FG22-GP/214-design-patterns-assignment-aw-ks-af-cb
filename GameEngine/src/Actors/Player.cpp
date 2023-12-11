@@ -55,12 +55,15 @@ void Player::TakeDamage(int health)
     {
         Destroy();
     }
-    
 }
 
 int Player::GetCurrentHealth()
 {
-    return CurrentHealth;
+    if(CurrentHealth >= 0)
+    {
+        return CurrentHealth;
+    }
+    return 0;
 }
 
 float2 Player::GetAimDirection()
