@@ -11,6 +11,7 @@ ProjectilePool::ProjectilePool(size_t poolSize)
         projectile->Enabled = false;
         pool.push_back(std::move(projectile));
     }
+    std::cout << pool.size() << std::endl;
 }
 
 Projectile* ProjectilePool::AcquireObject(float2 position, float2 direction)
@@ -22,7 +23,7 @@ Projectile* ProjectilePool::AcquireObject(float2 position, float2 direction)
         projectile->SetPosition(position);
         projectile->direction = direction;
         projectile->Enabled = true;
-        std::cout << "From Pool, Size: " << pool.size() << std::endl ;
+        std::cout << "Projectile From Pool    Size:" << pool.size()  << std::endl;
         return projectile;
     }
     auto projectile = projectileFactory.CreateProjectile(position, direction);
