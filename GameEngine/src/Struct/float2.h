@@ -44,6 +44,13 @@ public:
         return *this;
     }
 
+    float2& operator*= (const float rhs)
+    {
+        X *= rhs;
+        Y *= rhs;
+        return *this;
+    }
+    
     float2& operator+= (const float2 rhs)
     {
         X += rhs.X;
