@@ -10,7 +10,7 @@ public:
     UI();
     ~UI();
     
-    void RenderText(const std::string& text, int x, int y, SDL_Color color);
+    void RenderText(const std::string& text, int x, int y, SDL_Color color, int fontSize);
 
 private:
     TTF_Font* _font;
