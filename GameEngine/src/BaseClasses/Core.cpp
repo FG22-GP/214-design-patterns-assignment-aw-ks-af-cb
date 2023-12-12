@@ -165,7 +165,7 @@ void Core::RenderPass(SDL_Renderer* renderer)
     
     if(player->GetCurrentHealth() <= 0)
     {
-        ui->RenderText("GAME OVER!", MidPoint.X - 50, MidPoint.Y - 50, { 255, 255, 255, 255 }, 100);
+        ui->RenderText("GAME OVER!", MidPoint.X - 300, MidPoint.Y - 50, { 255, 255, 255, 255 }, 100);
     }
     
     for (int i = 0; i < Actors.size(); i++)
