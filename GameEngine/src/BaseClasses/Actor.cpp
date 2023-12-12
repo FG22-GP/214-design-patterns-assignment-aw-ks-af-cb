@@ -27,6 +27,13 @@ std::shared_ptr<SDL_Texture> Actor::GetTexture()
     return TextureFlyWeight::Instance->AsteroidTexture;
 }
 
+const float2 Actor::GetSize() const
+{
+    return {static_cast<float>(Rect->w), static_cast<float>(Rect->h)};
+}
+
+
+
 float2 Actor::GetPosition() const
 {
     return Position;

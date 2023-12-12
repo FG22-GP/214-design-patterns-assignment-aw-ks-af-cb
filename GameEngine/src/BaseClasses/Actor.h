@@ -21,6 +21,8 @@ protected:
     float DeltaTime = 0;
 
     virtual std::shared_ptr<SDL_Texture> GetTexture();
+
+    const float2 GetSize() const;
 private:
     SDL_Rect* Rect;
     float2 Position;
