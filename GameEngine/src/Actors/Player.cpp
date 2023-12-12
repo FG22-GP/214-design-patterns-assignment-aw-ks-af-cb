@@ -39,12 +39,19 @@ void Player::Aim(float2* mousePosition)
 void Player::Move(float2* input)
 {
     const float2 Position = GetPosition();
-    SetPosition(Position + *input * DeltaTime * 100);
+    SetPosition(Position + *input * DeltaTime * 300);
 }
 
 void Player::Update(float DeltaTime)
 {
     Actor::Update(DeltaTime);
+    float2 position = GetPosition();
+    const float2 size = GetSize();
+
+    float x = XLoopCheck(position, size);
+    float y = YLoopCheck(position, size);
+    
+    SetPosition(float2(x,y));
 }
 
 void Player::TakeDamage(int health)
@@ -74,4 +81,36 @@ int Player::GetCurrentHealth()
 float2 Player::GetAimDirection()
 {
     return (AimPosition - GetPosition()).Normalize();
+}
+
+float Player::YLoopCheck(float2 position, float2 size)
+{
+    float2 ScreenSize = Core::MidPoint * 2.f;
+    if (position.Y <= -size.Y + 50)
+    {
+        return ScreenSize.Y + size.Y - 51;
+    }
+
+    if (position.Y >= ScreenSize.Y + size.Y - 50)
+    {
+        return -size.Y + 51;
+    }
+
+    return position.Y;
+}
+
+float Player::XLoopCheck(float2 position, float2 size)
+{
+    float2 ScreenSize = Core::MidPoint * 2.f;
+    if (position.X <= -size.X + 50)
+    {
+        return ScreenSize.X + size.X - 51;
+    }
+
+    if (position.X >= ScreenSize.X + size.X - 50)
+    {
+        return -size.X + 51;
+    }
+
+    return position.X;
 }

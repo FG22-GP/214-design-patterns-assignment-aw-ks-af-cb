@@ -27,4 +27,8 @@ protected:
 
     int MaxHealth = 3;
     int CurrentHealth;
+
+private:
+    float YLoopCheck(float2 position, float2 size);
+    float XLoopCheck(float2 position, float2 size);
 };
