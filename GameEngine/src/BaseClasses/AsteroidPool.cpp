@@ -24,7 +24,7 @@ Asteroid* AsteroidPool::AcquireObject(float2 position, float2 direction)
         asteroid->Enabled = true;
         return asteroid;
     }
-    const auto asteroid = asteroidFactory.CreateAsteroid(position, float2(1,1), direction, 400);
+    const auto asteroid = asteroidFactory.CreateAsteroid(position, float2(50,50), direction, 400);
     asteroid->Enabled = true;
     return asteroid;
 }

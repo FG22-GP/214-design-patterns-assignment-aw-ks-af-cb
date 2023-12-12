@@ -14,4 +14,8 @@ public:
     std::shared_ptr<SDL_Texture> GetTexture() override;
 
     void Destroy() override;
+
+private:
+    const float MaxLifeTime = 10.f;
+    float LifeTime = 0;
 };

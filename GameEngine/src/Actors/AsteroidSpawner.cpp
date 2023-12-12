@@ -49,7 +49,7 @@ void AsteroidSpawner::SpawnNew()
     float y = std::lerp(100, screenSize.Y - 100, yRand);
     float2 target = {x,y};
 
-    float2 direction = (target - position).Normalize();
+    float2 direction = (midPoint - position).Normalize();
 
     Core::asteroidPool->AcquireObject(position, direction);
 }
