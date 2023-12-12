@@ -22,6 +22,8 @@ private:
 
     std::uniform_real_distribution<> cooldownDistr;
     std::uniform_real_distribution<> angleDistr;
+    std::uniform_int_distribution<> rotationDistr;
+    std::uniform_int_distribution<> rotationSpeedDistr;
     std::mt19937 gen;
 
 protected:

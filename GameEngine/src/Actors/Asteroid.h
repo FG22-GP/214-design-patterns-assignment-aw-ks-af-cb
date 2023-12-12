@@ -11,10 +11,15 @@ public:
 
     void Update(float deltaTime) override;
 
+    void RenderPass(SDL_Renderer* renderer) override;
+
     std::shared_ptr<SDL_Texture> GetTexture() override;
 
     void Destroy() override;
 
+    float RotationSpeed = 0.0f;
+    float Rotation = 0.0f;
+    
 private:
     const float MaxLifeTime = 10.f;
     float LifeTime = 0;
