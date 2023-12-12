@@ -114,7 +114,5 @@ public:
 
         if(MouseInput && mouseClicked)
             MouseInput(MousePosition);
-        
-        mouseClicked = false;
     }
 };

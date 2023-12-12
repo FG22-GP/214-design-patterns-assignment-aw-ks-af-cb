@@ -18,6 +18,9 @@ Player::~Player()
 
 void Player::Fire(float2* mousePosition)
 {
+    if (fireCooldown < fireRate) return;
+    fireCooldown = 0.0f;
+    
     float2 aimDirection = GetAimDirection();
 
     float2 spawnPosition = GetPosition() + aimDirection * 40;
@@ -39,6 +42,7 @@ void Player::Move(float2* input)
 void Player::Update(float DeltaTime)
 {
     Actor::Update(DeltaTime);
+    fireCooldown += DeltaTime;
     float2 position = GetPosition();
     const float2 size = GetSize();
 
