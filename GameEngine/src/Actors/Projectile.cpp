@@ -5,7 +5,7 @@
 #include <iostream>
 
 
-Projectile::Projectile(SDL_Rect* rect, const char filePath[], int collisionRadius, float speed, float2 direction): Actor(rect, filePath, collisionRadius) ,IVelocity(speed, direction) {}
+Projectile::Projectile(SDL_Rect* rect, const char filePath[], int collisionRadius, float speed, float2 direction): Actor(rect, collisionRadius) ,IVelocity(speed, direction) {}
 
 Projectile::~Projectile()
 {
@@ -46,4 +46,9 @@ void Projectile::Reset()
     SetPosition(float2(10000, 10000));
     direction = {0, 0};
     speed = 0;
+}
+
+std::shared_ptr<SDL_Texture> Projectile::GetTexture()
+{
+    return TextureFlyWeight::Instance->ProjectileTexture;
 }

@@ -12,7 +12,7 @@ Player::Player(
     const char filePath[],
     int collisionRadius,
     float speed,
-    float2 direction) : Actor(rect, filePath, collisionRadius), IVelocity(speed, direction)
+    float2 direction) : Actor(rect, collisionRadius), IVelocity(speed, direction)
 {
     CurrentHealth = MaxHealth;
 }
@@ -26,7 +26,7 @@ void Player::Fire(float2* mousePosition)
 {
     float2 aimDirection = GetAimDirection();
 
-    float2 spawnPosition = GetPosition() + aimDirection * 100;
+    float2 spawnPosition = GetPosition() + aimDirection * 40;
 
     Core::projectilePool->AcquireObject(spawnPosition, aimDirection);
 }
@@ -55,6 +55,11 @@ void Player::TakeDamage(int health)
     {
         Destroy();
     }
+}
+
+std::shared_ptr<SDL_Texture> Player::GetTexture()
+{
+    return TextureFlyWeight::Instance->PlayerTexture;
 }
 
 int Player::GetCurrentHealth()

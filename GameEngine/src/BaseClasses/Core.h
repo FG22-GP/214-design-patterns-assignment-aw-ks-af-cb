@@ -3,6 +3,7 @@
 
 #include "Actor.h"
 #include "ProjectilePool.h"
+#include "TextureFlyWeight.h"
 #include "../Actors/Player.h"
 #include "../InputHandler/InputHandler.h"
 #include "UI.h"
@@ -32,6 +33,8 @@ public:
     static inline SDL_Renderer* renderer;
 
     static inline std::unique_ptr<UI> ui;
+
+    static inline TextureFlyWeight* TextureFlyWeight;
     
     static void RemoveBinding();
 

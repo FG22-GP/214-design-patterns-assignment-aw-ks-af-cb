@@ -4,11 +4,12 @@
 #include <SDL_render.h>
 #include "../Struct/float2.h"
 #include "Object.h"
+#include "TextureFlyWeight.h"
 
 class Actor : public Object
 {
 public:
-    Actor(SDL_Rect* Rect,const char FilePath[], int CollisionRadius);
+    Actor(SDL_Rect* Rect, int CollisionRadius);
     ~Actor() override;
     
 #pragma region Params
@@ -18,12 +19,14 @@ public:
     bool ShouldBeDestroyed;
 protected:
     float DeltaTime = 0;
+
+    virtual std::shared_ptr<SDL_Texture> GetTexture();
 private:
     SDL_Rect* Rect;
     float2 Position;
     float2 Offset;
 
-    SDL_Texture* texture;
+    TextureFlyWeight* textureFlyWeight;
 #pragma endregion
     
 

@@ -16,6 +16,7 @@ public:
     void Move(float2* input);
     void Update(float DeltaTime) override;
     void TakeDamage(int health) override;
+    std::shared_ptr<SDL_Texture> GetTexture() override;
 
     int GetCurrentHealth();
     

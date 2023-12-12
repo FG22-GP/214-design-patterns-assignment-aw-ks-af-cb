@@ -6,25 +6,25 @@
 #include "Core.h"
 #include "../Struct/float2.h"
 
-Actor::Actor(SDL_Rect* Rect, const char* FilePath, int CollisionRadius)
+Actor::Actor(SDL_Rect* Rect, int CollisionRadius)
 {
     this->Rect = Rect;
-    SDL_Surface* surface = IMG_Load(FilePath);
     this->CollisionRadius = CollisionRadius;
     ShouldBeDestroyed = false;
     Position = float2(Rect->x, Rect->y);
     Offset = float2(Rect->w/2, Rect->h/2);
-    texture = SDL_CreateTextureFromSurface(Core::renderer, surface);
-    std::cout << SDL_GetError() << std::endl;
-    SDL_FreeSurface(surface);
 
     Core::Actors.push_back(std::unique_ptr<Actor>(this));
 }
 
 Actor::~Actor()
 {
-    SDL_DestroyTexture(texture);
     delete Rect;
+}
+
+std::shared_ptr<SDL_Texture> Actor::GetTexture()
+{
+    return TextureFlyWeight::Instance->AsteroidTexture;
 }
 
 float2 Actor::GetPosition() const
@@ -50,7 +50,7 @@ void Actor::RenderPass(SDL_Renderer* renderer)
     Rect->x = static_cast<int>((Position.X - Offset.X));
     Rect->y = static_cast<int>((Position.Y - Offset.Y));
     
-    SDL_RenderCopy(renderer, texture, nullptr, Rect);
+    SDL_RenderCopy(renderer, GetTexture().get(), nullptr, Rect);
 }
 
 void Actor::Destroy()

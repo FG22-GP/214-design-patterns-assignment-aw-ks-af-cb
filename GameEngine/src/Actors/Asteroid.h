@@ -11,5 +11,7 @@ public:
 
     void Update(float deltaTime) override;
 
+    std::shared_ptr<SDL_Texture> GetTexture() override;
+
     void Destroy() override;
 };

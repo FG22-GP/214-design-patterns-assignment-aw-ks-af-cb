@@ -18,6 +18,8 @@ public:
     void Destroy() override;
 
     void Reset();
+
+    std::shared_ptr<SDL_Texture> GetTexture() override;
 protected:
     float Lifetime = 0;
 };
