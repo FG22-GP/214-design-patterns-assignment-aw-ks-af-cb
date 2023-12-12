@@ -154,7 +154,7 @@ void Core::Collision()
 
 void Core::RenderPass(SDL_Renderer* renderer)
 {
-    SDL_SetRenderDrawColor(renderer, 120, 60, 255, 255);
+    SDL_SetRenderDrawColor(renderer, 55, 66, 89, 255);
     SDL_RenderClear(renderer);
     
     ui->RenderText("Health: " + std::to_string(player->GetCurrentHealth()), 0, 0, { 255, 255, 255, 255 }, 24);
