@@ -3,6 +3,7 @@
 
 #include "Actor.h"
 #include "ProjectilePool.h"
+#include "ScoreManager.h"
 #include "TextureFlyWeight.h"
 #include "../Actors/Player.h"
 #include "../InputHandler/InputHandler.h"
@@ -35,6 +36,8 @@ public:
     static inline std::unique_ptr<UI> ui;
 
     static inline TextureFlyWeight* TextureFlyWeight;
+
+    static inline std::unique_ptr<ScoreManager> score_manager;
     
     static void RemoveBinding();
 

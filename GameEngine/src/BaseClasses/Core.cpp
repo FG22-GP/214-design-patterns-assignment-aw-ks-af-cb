@@ -51,6 +51,7 @@ void Core::Start()
     
     player = std::make_unique<Player>(Rect, "./img/Player.png", 10, 1, float2(0,0));
     ui = std::make_unique<UI>();
+    score_manager = std::make_unique<ScoreManager>();
     input_handler->MoveInput = std::bind(&Player::Move, player.get(), std::placeholders::_1);
     input_handler->MouseInput = std::bind(&Player::Fire, player.get(), std::placeholders::_1);
     input_handler->MouseMotion = std::bind(&Player::Aim, player.get(), std::placeholders::_1);
@@ -147,6 +148,7 @@ void Core::Collision()
             {
                 asteroid->Destroy();
                 projectile->Destroy();
+                score_manager->IncreaseScore(1);
             }
         }
     }
@@ -158,11 +160,14 @@ void Core::RenderPass(SDL_Renderer* renderer)
     SDL_RenderClear(renderer);
     
     ui->RenderText("Health: " + std::to_string(player->GetCurrentHealth()), 0, 0, { 255, 255, 255, 255 }, 24);
-
+    ui->RenderText("Score: " + std::to_string(score_manager->GetCurrentScore()), 500, 0, {255, 255, 255, 255}, 24);
+    ui->RenderText("HighScore: " + std::to_string(score_manager->GetHighScore()), 800, 0, {255, 255, 255, 255}, 24);
+    
     if(player->GetCurrentHealth() <= 0)
     {
-        ui->RenderText("GAME OVER!", 250, 250, { 255, 255, 255, 255 }, 100); // change to middle of screen instead
+        ui->RenderText("GAME OVER!", MidPoint.X - 50, MidPoint.Y - 50, { 255, 255, 255, 255 }, 100);
     }
+    
     for (int i = 0; i < Actors.size(); i++)
     {
         if (!Actors[i]->Enabled) continue;
@@ -181,5 +186,10 @@ void Core::Cleanup()
         {
             Actors.erase(Actors.begin() + i);
         }
+    }
+
+    if(player->GetCurrentHealth() <= 0)
+    {
+        score_manager->UpdateHighScore();
     }
 }
