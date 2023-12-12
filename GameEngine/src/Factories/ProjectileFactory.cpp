@@ -6,7 +6,7 @@ ProjectileFactory::ProjectileFactory()
     defaultSize.Y = 30.f;
     defaultFilePath = "./img/projectile.png";
     defaultCollisionRadius = static_cast<int>(defaultSize.X / 2.f);
-    defaultSpeed = 100.f;
+    defaultSpeed = 500.f;
 }
 
 Projectile* ProjectileFactory::CreateProjectile(float2 position, float2 direction) const

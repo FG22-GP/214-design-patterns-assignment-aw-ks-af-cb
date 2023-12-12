@@ -7,7 +7,7 @@ AsteroidPool::AsteroidPool(size_t poolSize)
     // Initialize the object pool with objects
     for (size_t i = 0; i < poolSize; ++i)
     {
-        const auto asteroid = asteroidFactory.CreateAsteroid({0, 0}, {50, 50}, {0,0}, 100);
+        const auto asteroid = asteroidFactory.CreateAsteroid({0, 0}, {50, 50}, {0,0}, 400);
         asteroid->Enabled = false;
         pool.push_back(asteroid);
     }
@@ -24,7 +24,7 @@ Asteroid* AsteroidPool::AcquireObject(float2 position, float2 direction)
         asteroid->Enabled = true;
         return asteroid;
     }
-    const auto asteroid = asteroidFactory.CreateAsteroid(position, float2(1,1), direction, 200);
+    const auto asteroid = asteroidFactory.CreateAsteroid(position, float2(1,1), direction, 400);
     asteroid->Enabled = true;
     return asteroid;
 }
