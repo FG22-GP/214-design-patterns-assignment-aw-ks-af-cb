@@ -46,7 +46,7 @@ void Core::Start()
     Rect->w = 100;
     Rect->h = 100;
     
-    player = std::make_unique<Player>(Rect, "./img/charmander.png", 10, 1, float2(0,0));
+    player = std::make_unique<Player>(Rect, "./img/Player.png", 10, 1, float2(0,0));
     ui = std::make_unique<UI>();
     input_handler->MoveInput = std::bind(&Player::Move, player.get(), std::placeholders::_1);
     input_handler->MouseInput = std::bind(&Player::Fire, player.get(), std::placeholders::_1);

@@ -4,7 +4,7 @@ ProjectileFactory::ProjectileFactory()
 {
     defaultSize.X = 30.f;
     defaultSize.Y = 30.f;
-    defaultFilePath = "./img/pikachu.png";
+    defaultFilePath = "./img/projectile.png";
     defaultCollisionRadius = static_cast<int>(defaultSize.X / 2.f);
     defaultSpeed = 100.f;
 }
