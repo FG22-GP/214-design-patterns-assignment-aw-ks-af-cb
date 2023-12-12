@@ -58,7 +58,7 @@ nunit-*.xml
 [Rr]eleasePS/
 dlldata.c
 
-# Benchmark Results
+# Benchmark Results1
 BenchmarkDotNet.Artifacts/
 
 # .NET Core
@@ -226,6 +226,7 @@ _pkginfo.txt
 *.appx
 *.appxbundle
 *.appxupload
+highscore.txt
 
 # Visual Studio cache files
 # files ending in .cache can be ignored
