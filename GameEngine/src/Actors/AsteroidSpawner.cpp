@@ -45,11 +45,11 @@ void AsteroidSpawner::SpawnNew()
     double yRand = static_cast<double>(rand()) / RAND_MAX;
 
     
-    float x = std::lerp(0, screenSize.X, xRand);
-    float y = std::lerp(0, screenSize.Y, yRand);
+    float x = std::lerp(100, screenSize.X - 100, xRand);
+    float y = std::lerp(100, screenSize.Y - 100, yRand);
     float2 target = {x,y};
 
-    float2 direction = (Core::MidPoint - position).Normalize();
+    float2 direction = (target - position).Normalize();
 
     Core::asteroidPool->AcquireObject(position, direction);
 }

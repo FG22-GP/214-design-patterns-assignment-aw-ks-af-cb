@@ -20,7 +20,7 @@ Core::Core(SDL_Renderer* renderer): e(), LastFrameTime(0)
     
     input_handler = new InputHandler();
 
-    asteroidSpawner = new AsteroidSpawner(.2f, .7f, 300, MidPoint*2);
+    asteroidSpawner = new AsteroidSpawner(.2f, .7f, 800, MidPoint*2);
 
     TextureFlyWeight = new class TextureFlyWeight("./img/asteroid.png", "./img/projectile.png", "./img/Player.png");
 }
