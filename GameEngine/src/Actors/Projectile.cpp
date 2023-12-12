@@ -41,13 +41,6 @@ void Projectile::Destroy()
     Core::projectilePool->ReleaseObject(this);
 }
 
-void Projectile::Reset()
-{
-    SetPosition(float2(10000, 10000));
-    direction = {0, 0};
-    speed = 0;
-}
-
 std::shared_ptr<SDL_Texture> Projectile::GetTexture()
 {
     return TextureFlyWeight::Instance->ProjectileTexture;
