@@ -1,11 +1,5 @@
 ﻿#include "Player.h"
-
-#include <iostream>
-
 #include "../BaseClasses/Core.h"
-#include "../BaseClasses/UI.h"
-#include "../InputHandler/InputHandler.h"
-
 
 Player::Player(
     SDL_Rect* rect,
