@@ -104,9 +104,9 @@ void Core::UpdateObjects()
 {
     const Uint32 CurrentTime = SDL_GetTicks();
 
-    const float DeltaTime = (CurrentTime - LastFrameTime) / 1000.0f;
+    const float DeltaTime = (static_cast<float>(CurrentTime) - LastFrameTime) / 1000.0f;
     
-    LastFrameTime = CurrentTime;
+    LastFrameTime = static_cast<float>(CurrentTime);
     
     for (int i = 0; i < Actors.size(); i++)
     {
@@ -165,7 +165,7 @@ void Core::RenderPass(SDL_Renderer* renderer)
     
     if(player->GetCurrentHealth() <= 0)
     {
-        ui->RenderText("GAME OVER!", MidPoint.X - 300, MidPoint.Y - 50, whiteColor, 100);
+        ui->RenderText("GAME OVER!", static_cast<int>(std::round(MidPoint.X)) - 300, static_cast<int>(std::round(MidPoint.Y)) - 50, whiteColor, 100);
     }
     
     for (int i = 0; i < Actors.size(); i++)

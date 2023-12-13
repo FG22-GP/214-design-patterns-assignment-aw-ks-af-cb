@@ -88,8 +88,8 @@ public:
 
     void HandleMouseMotionInput(SDL_MouseMotionEvent MouseCode)
     {
-        MousePosition->X = MouseCode.x;
-        MousePosition->Y = MouseCode.y;
+        MousePosition->X = static_cast<float>(MouseCode.x);
+        MousePosition->Y = static_cast<float>(MouseCode.y);
     }
 
     void HandleInputEvents()

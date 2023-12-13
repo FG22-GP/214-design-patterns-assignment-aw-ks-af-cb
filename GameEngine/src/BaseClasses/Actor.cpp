@@ -11,8 +11,8 @@ Actor::Actor(SDL_Rect* Rect, int CollisionRadius)
     this->Rect = Rect;
     this->CollisionRadius = CollisionRadius;
     ShouldBeDestroyed = false;
-    Position = float2(Rect->x, Rect->y);
-    Offset = float2(Rect->w/2, Rect->h/2);
+    Position = float2(static_cast<float>(Rect->x), static_cast<float>(Rect->y));
+    Offset = float2(static_cast<float>(Rect->w)/2.f, static_cast<float>(Rect->h)/2.f);
 
     Core::Actors.push_back(std::unique_ptr<Actor>(this));
 }
