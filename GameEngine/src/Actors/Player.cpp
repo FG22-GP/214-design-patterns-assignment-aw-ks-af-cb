@@ -35,8 +35,9 @@ void Player::Aim(float2* mousePosition)
 
 void Player::Move(float2* input)
 {
-    const float2 Position = GetPosition();
-    SetPosition(Position + *input * DeltaTime * 300);
+    const float2 position = GetPosition();
+    const float2 normalizedInput = input->Normalize();
+    SetPosition(position + normalizedInput * DeltaTime * 300);
 }
 
 void Player::Update(float DeltaTime)

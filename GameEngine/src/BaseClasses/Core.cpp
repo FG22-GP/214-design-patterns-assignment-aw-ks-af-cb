@@ -20,7 +20,7 @@ Core::Core(SDL_Renderer* renderer): e(), LastFrameTime(0)
     
     input_handler = new InputHandler();
 
-    asteroidSpawner = new AsteroidSpawner(.2f, .7f, 800, MidPoint*2);
+    asteroidSpawner = new AsteroidSpawner(.1f, .5f, 800, MidPoint*2);
 
     TextureFlyWeight = new class TextureFlyWeight("./img/asteroid.png", "./img/projectile.png", "./img/Player.png");
 }
@@ -49,7 +49,7 @@ void Core::Start()
     Rect->w = 100;
     Rect->h = 100;
     
-    player = std::make_unique<Player>(Rect, "./img/Player.png", 10, 1, float2(0,0));
+    player = std::make_unique<Player>(Rect, "./img/Player.png", 50, 1.5f, float2(0,0));
     ui = std::make_unique<UI>();
     score_manager = std::make_unique<ScoreManager>();
     input_handler->MoveInput = std::bind(&Player::Move, player.get(), std::placeholders::_1);
