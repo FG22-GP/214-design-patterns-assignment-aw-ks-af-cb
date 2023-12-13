@@ -44,6 +44,12 @@ void Actor::SetPosition(float2 Position)
     this->Position = Position;
 }
 
+void Actor::SetSize(float2 size) const
+{
+    Rect->w = static_cast<int>(size.X);
+    Rect->h = static_cast<int>(size.Y);
+}
+
 void Actor::AddPositionOffset(float2 DeltaPosition)
 {
     SetPosition(GetPosition() + DeltaPosition);

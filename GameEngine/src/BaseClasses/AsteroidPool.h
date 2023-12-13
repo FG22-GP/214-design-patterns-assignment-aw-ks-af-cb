@@ -13,6 +13,6 @@ private:
 public:
     AsteroidPool(size_t poolSize);
 
-    Asteroid* AcquireObject(float2 position, float2 direction);
+    Asteroid* AcquireObject(const float2 position, const int size, const float2 direction, const float speed);
     void ReleaseObject(Asteroid* Object);
 };

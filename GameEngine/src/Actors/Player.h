@@ -32,5 +32,5 @@ private:
     float YLoopCheck(float2 position, float2 size);
     float XLoopCheck(float2 position, float2 size);
     float fireCooldown = 0.0f;
-    float fireRate = 0.5f;
+    float fireRate = 0.75f;
 };

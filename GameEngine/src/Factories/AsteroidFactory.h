@@ -12,5 +12,5 @@ public:
     AsteroidFactory();
     ~AsteroidFactory() = default;
     
-    Asteroid* CreateAsteroid(float2 position, float2 size, float2 direction, float speed) const;
+    Asteroid* CreateAsteroid(float2 position, int size, float2 direction, float speed) const;
 };

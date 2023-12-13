@@ -18,6 +18,8 @@ AsteroidSpawner::AsteroidSpawner(float minSpawnTime, float maxSpawnTime, float r
     angleDistr = std::uniform_real_distribution<> (0, 3.14159265358979323846264f * 2.f);
     rotationDistr = std::uniform_int_distribution<> (0, 359);
     rotationSpeedDistr = std::uniform_int_distribution<> (-150, 150);
+    sizeDistr = std::uniform_int_distribution<> (50, 100);
+    speedDistr = std::uniform_real_distribution<float> (325, 475);
 
     cooldown = cooldownDistr(gen);
     time = 0;
@@ -52,9 +54,10 @@ void AsteroidSpawner::SpawnNew()
     float2 target = {x,y};
 
     float2 direction = (target - position).Normalize();
-
+    const int size = sizeDistr(gen);
+    const float speed = speedDistr(gen);
     
-    Asteroid* asteroid = Core::asteroidPool->AcquireObject(position, direction);
+    Asteroid* asteroid = Core::asteroidPool->AcquireObject(position, size, direction, speed);
     asteroid->Rotation = static_cast<int>(rotationDistr(gen));
     asteroid->RotationSpeed = static_cast<int>(rotationSpeedDistr(gen));
 }
