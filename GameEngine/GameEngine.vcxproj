@@ -36,6 +36,7 @@
     <ClCompile Include="src\BaseClasses\AsteroidPool.cpp" />
     <ClCompile Include="src\BaseClasses\Core.cpp" />
     <ClCompile Include="src\BaseClasses\ProjectilePool.cpp" />
+    <ClCompile Include="src\BaseClasses\Random.cpp" />
     <ClCompile Include="src\BaseClasses\ScoreManager.cpp" />
     <ClCompile Include="src\BaseClasses\TextureFlyWeight.cpp" />
     <ClCompile Include="src\BaseClasses\UI.cpp" />
@@ -201,6 +202,7 @@
     <ClInclude Include="src\BaseClasses\Core.h" />
     <ClInclude Include="src\BaseClasses\Object.h" />
     <ClInclude Include="src\BaseClasses\ProjectilePool.h" />
+    <ClInclude Include="src\BaseClasses\Random.h" />
     <ClInclude Include="src\BaseClasses\ScoreManager.h" />
     <ClInclude Include="src\BaseClasses\TextureFlyWeight.h" />
     <ClInclude Include="src\BaseClasses\UI.h" />

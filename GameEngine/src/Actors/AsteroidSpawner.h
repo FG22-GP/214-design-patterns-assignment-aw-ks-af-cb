@@ -2,6 +2,7 @@
 #include <random>
 
 #include "../BaseClasses/Actor.h"
+#include "../BaseClasses/Random.h"
 
 class AsteroidSpawner
 {
@@ -29,6 +30,8 @@ private:
 
 
     std::mt19937 gen;
+
+    Random random;
 
 protected:
 

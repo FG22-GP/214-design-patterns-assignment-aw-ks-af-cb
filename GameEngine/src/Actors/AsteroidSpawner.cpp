@@ -12,16 +12,9 @@ AsteroidSpawner::AsteroidSpawner(float minSpawnTime, float maxSpawnTime, float r
 
     midPoint = screenSize / 2.f;
 
-    std::random_device rd;
-    gen = std::mt19937(rd());
-    cooldownDistr = std::uniform_real_distribution<> (minSpawnTime, maxSpawnTime);
-    angleDistr = std::uniform_real_distribution<> (0, 3.14159265358979323846264f * 2.f);
-    rotationDistr = std::uniform_int_distribution<> (0, 359);
-    rotationSpeedDistr = std::uniform_int_distribution<> (-150, 150);
-    sizeDistr = std::uniform_int_distribution<> (50, 100);
-    speedDistr = std::uniform_real_distribution<float> (325, 475);
+    random = Random();
 
-    cooldown = cooldownDistr(gen);
+    cooldown = random.GetFloatInRange(minSpawnTime, maxSpawnTime);
     time = 0;
 }
 
@@ -32,32 +25,32 @@ void AsteroidSpawner::Update(float DeltaTime)
     if (time >= cooldown)
     {
         time = 0;
-        cooldown = cooldownDistr(gen);
+        cooldown = random.GetFloatInRange(minSpawnTIme, maxSpawnTime);
         SpawnNew();
     }
 }
 
 void AsteroidSpawner::SpawnNew()
 {
-    const double angle = angleDistr(gen);
+    const double angle = random.GetFloatInRange(0, 3.14159265358979323846264f * 2.f);
     float2 position = {static_cast<float>(std::cos(angle)), static_cast<float>(std::sin(angle))};
     position = position.Normalize();
 
     position *= radius;
     position += midPoint;
-    double xRand = static_cast<double>(rand()) / RAND_MAX;
-    double yRand = static_cast<double>(rand()) / RAND_MAX;
+    float xRand = random.GetFloatInRange(0.f,1.f);
+    float yRand = random.GetFloatInRange(0.f,1.f);
 
     
-    float x = std::lerp(100, screenSize.X - 100, xRand);
-    float y = std::lerp(100, screenSize.Y - 100, yRand);
+    float x = std::lerp(100.f, screenSize.X - 100.f, xRand);
+    float y = std::lerp(100.f, screenSize.Y - 100.f, yRand);
     float2 target = {x,y};
 
     float2 direction = (target - position).Normalize();
-    const int size = sizeDistr(gen);
-    const float speed = speedDistr(gen);
+    const int size = random.GetIntInRange(50, 100);
+    const float speed = random.GetFloatInRange(325.f, 425.f);
     
     Asteroid* asteroid = Core::asteroidPool->AcquireObject(position, size, direction, speed);
-    asteroid->Rotation = static_cast<int>(rotationDistr(gen));
-    asteroid->RotationSpeed = static_cast<int>(rotationSpeedDistr(gen));
+    asteroid->Rotation = random.GetFloatInRange(0, 360);
+    asteroid->RotationSpeed = random.GetFloatInRange(-150, 150);
 }
