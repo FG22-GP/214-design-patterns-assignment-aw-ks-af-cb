@@ -8,9 +8,9 @@ TextureFlyWeight::TextureFlyWeight(const char* asteroidFilePath, const char* pro
 {
     Instance = this;
     
-    AsteroidTexture = std::shared_ptr<SDL_Texture>(CreateTexture(asteroidFilePath));
-    ProjectileTexture = std::shared_ptr<SDL_Texture>(CreateTexture(projectileFilePath));
-    PlayerTexture = std::shared_ptr<SDL_Texture>(CreateTexture(playerFilePath));
+    AsteroidTexture = std::shared_ptr<SDL_Texture>(CreateTexture(asteroidFilePath), sdl_deleter());
+    ProjectileTexture = std::shared_ptr<SDL_Texture>(CreateTexture(projectileFilePath), sdl_deleter());
+    PlayerTexture = std::shared_ptr<SDL_Texture>(CreateTexture(playerFilePath), sdl_deleter());
 }
 
 SDL_Texture* TextureFlyWeight::CreateTexture(const char* filePath)
