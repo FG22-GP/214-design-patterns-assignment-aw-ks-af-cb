@@ -41,9 +41,10 @@ public:
     
     static void RemoveBinding();
 
-    static inline std::unique_ptr<Player> player;
+    static inline Player* player;
 private:
     bool quit = false;
+    bool restart = false;
     float LastFrameTime;
 
     SDL_Color whiteColor = {255, 255, 255, 255};
@@ -60,4 +61,9 @@ public:
     {
         return quit;
     }
+    bool Restart()
+    {
+        return player->GetCurrentHealth() <= 0;
+    }
+    
 };

@@ -27,9 +27,18 @@ Core::Core(SDL_Renderer* renderer): e(), LastFrameTime(0)
 
 Core::~Core()
 {
+    SDL_Delay(1000);
     delete projectilePool;
     delete asteroidPool;
     delete asteroidSpawner;
+    delete TextureFlyWeight;
+    for (int i = Actors.size() - 1; i >= 0; --i)
+    {
+        Actors[i].reset();
+    }
+    Actors.clear();
+    ui.reset();
+    score_manager.reset();
     delete input_handler;
 }
 
@@ -49,12 +58,12 @@ void Core::Start()
     Rect->w = 100;
     Rect->h = 100;
     
-    player = std::make_unique<Player>(Rect, "./img/Player.png", 50, 1.5f, float2(0,0));
+    player = new Player(Rect, "./img/Player.png", 50, 1.5f, float2(0,0));
     ui = std::make_unique<UI>();
     score_manager = std::make_unique<ScoreManager>();
-    input_handler->MoveInput = std::bind(&Player::Move, player.get(), std::placeholders::_1);
-    input_handler->MouseInput = std::bind(&Player::Fire, player.get(), std::placeholders::_1);
-    input_handler->MouseMotion = std::bind(&Player::Aim, player.get(), std::placeholders::_1);
+    input_handler->MoveInput = std::bind(&Player::Move, player, std::placeholders::_1);
+    input_handler->MouseInput = std::bind(&Player::Fire, player, std::placeholders::_1);
+    input_handler->MouseMotion = std::bind(&Player::Aim, player, std::placeholders::_1);
 }
 
 void Core::Inputs()
@@ -102,6 +111,7 @@ void Core::Inputs()
 
 void Core::UpdateObjects()
 {
+    
     const Uint32 CurrentTime = SDL_GetTicks();
 
     const float DeltaTime = (static_cast<float>(CurrentTime) - LastFrameTime) / 1000.0f;

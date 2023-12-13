@@ -70,6 +70,13 @@ int main(int argc, char* args[])
 		core->Collision();
 		core->RenderPass(renderer);
 		core->Cleanup();
+
+		if (core->Restart())
+		{
+			delete core;
+			core = new Core(renderer);
+			core->Start();
+		}
 		
 		SDL_Delay(0); // can be used to wait for a certain amount of ms
 	}

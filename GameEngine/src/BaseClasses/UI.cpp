@@ -9,17 +9,17 @@
 
 UI::UI() 
 {
+   _font = TTF_OpenFont("./font/Minecraft.ttf", 24);
 }
 
 UI::~UI()
 {
    TTF_CloseFont(_font);
-   TTF_Quit();
 }
 
 void UI::RenderText(const std::string& text, int x, int y, SDL_Color color, int fontSize)
 {
-   _font = TTF_OpenFont("./font/Minecraft.ttf", fontSize);
+   TTF_SetFontSize(_font, fontSize);
    if(!_font)
    {
       std::cout << "Failed to load font: " << TTF_GetError() << std::endl;
