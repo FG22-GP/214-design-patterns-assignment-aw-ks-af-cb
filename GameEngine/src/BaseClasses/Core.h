@@ -46,6 +46,8 @@ private:
     bool quit = false;
     float LastFrameTime;
 
+    SDL_Color whiteColor = {255, 255, 255, 255};
+
     AsteroidSpawner* asteroidSpawner;
 public:
     void Start();

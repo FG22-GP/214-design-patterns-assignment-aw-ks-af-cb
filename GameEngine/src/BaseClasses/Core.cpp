@@ -159,13 +159,13 @@ void Core::RenderPass(SDL_Renderer* renderer)
     SDL_SetRenderDrawColor(renderer, 55, 66, 89, 255);
     SDL_RenderClear(renderer);
     
-    ui->RenderText("Health: " + std::to_string(player->GetCurrentHealth()), 0, 0, { 255, 255, 255, 255 }, 24);
-    ui->RenderText("Score: " + std::to_string(score_manager->GetCurrentScore()), 500, 0, {255, 255, 255, 255}, 24);
-    ui->RenderText("HighScore: " + std::to_string(score_manager->GetHighScore()), 800, 0, {255, 255, 255, 255}, 24);
+    ui->RenderText("Health: " + std::to_string(player->GetCurrentHealth()), 0, 0, whiteColor, 24);
+    ui->RenderText("Score: " + std::to_string(score_manager->GetCurrentScore()), 500, 0, whiteColor, 24);
+    ui->RenderText("HighScore: " + std::to_string(score_manager->GetHighScore()), 800, 0, whiteColor, 24);
     
     if(player->GetCurrentHealth() <= 0)
     {
-        ui->RenderText("GAME OVER!", MidPoint.X - 300, MidPoint.Y - 50, { 255, 255, 255, 255 }, 100);
+        ui->RenderText("GAME OVER!", MidPoint.X - 300, MidPoint.Y - 50, whiteColor, 100);
     }
     
     for (int i = 0; i < Actors.size(); i++)
