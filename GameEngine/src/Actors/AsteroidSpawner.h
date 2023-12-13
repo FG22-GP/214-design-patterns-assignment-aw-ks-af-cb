@@ -21,16 +21,8 @@ private:
 
     float2 midPoint;
 
-    std::uniform_real_distribution<> cooldownDistr;
-    std::uniform_real_distribution<> angleDistr;
-    std::uniform_real_distribution<float> speedDistr;
-    std::uniform_int_distribution<> rotationDistr;
-    std::uniform_int_distribution<> rotationSpeedDistr;
-    std::uniform_int_distribution<> sizeDistr;
-
-
-    std::mt19937 gen;
-
+    float totalElapsedTime;
+    
     Random random;
 
 protected:

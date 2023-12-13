@@ -1,7 +1,7 @@
 ﻿#include "AsteroidSpawner.h"
 #include "../BaseClasses/AsteroidPool.h"
 #include "../BaseClasses/Core.h"
-#include <bit>
+#include <cmath>
 
 AsteroidSpawner::AsteroidSpawner(float minSpawnTime, float maxSpawnTime, float radius, float2 screenSize)
 {
@@ -16,16 +16,18 @@ AsteroidSpawner::AsteroidSpawner(float minSpawnTime, float maxSpawnTime, float r
 
     cooldown = random.GetFloatInRange(minSpawnTime, maxSpawnTime);
     time = 0;
+    totalElapsedTime = 0;
 }
 
 void AsteroidSpawner::Update(float DeltaTime)
 {
     time += DeltaTime;
+    totalElapsedTime += DeltaTime;
 
     if (time >= cooldown)
     {
         time = 0;
-        cooldown = random.GetFloatInRange(minSpawnTIme, maxSpawnTime);
+        cooldown = random.GetFloatInRange(minSpawnTIme, maxSpawnTime) * std::pow(.95f, totalElapsedTime / 30.f);
         SpawnNew();
     }
 }
