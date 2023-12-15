@@ -1,7 +1,7 @@
 ﻿#pragma once
 
 #include "Projectile.h"
-#include "../BaseClasses/Core.h"
+#include "../Core.h"
 #include <iostream>
 
 

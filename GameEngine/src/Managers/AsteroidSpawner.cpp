@@ -1,6 +1,6 @@
 ﻿#include "AsteroidSpawner.h"
-#include "../BaseClasses/AsteroidPool.h"
-#include "../BaseClasses/Core.h"
+#include "../ObjectPools/AsteroidPool.h"
+#include "../Core.h"
 #include <cmath>
 
 AsteroidSpawner::AsteroidSpawner(float minSpawnTime, float maxSpawnTime, float radius, float2 screenSize)

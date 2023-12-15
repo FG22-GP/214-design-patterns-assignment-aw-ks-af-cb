@@ -6,7 +6,7 @@
 #include <SDL_ttf.h>
 
 #include "src/BaseClasses/Actor.h"
-#include "src/BaseClasses/Core.h"
+#include "src/Core.h"
 #include "src/InputHandler/InputHandler.h"
 
 //Screen dimension constants

@@ -1,14 +1,13 @@
 ﻿#pragma once
 #include <SDL_events.h>
 
-#include "Actor.h"
-#include "ProjectilePool.h"
-#include "ScoreManager.h"
-#include "TextureFlyWeight.h"
-#include "../Actors/Player.h"
-#include "../InputHandler/InputHandler.h"
-#include "UI.h"
-#include "../Actors/AsteroidSpawner.h"
+#include "BaseClasses/Actor.h"
+#include "ObjectPools/ProjectilePool.h"
+#include "Managers/ScoreManager.h"
+#include "Util/TextureFlyWeight.h"
+#include "Actors/Player.h"
+#include "BaseClasses/UI.h"
+#include "Managers/AsteroidSpawner.h"
 
 class AsteroidPool;
 

@@ -2,7 +2,7 @@
 
 #include <SDL_image.h>
 
-#include "Core.h"
+#include "../Core.h"
 
 TextureFlyWeight::TextureFlyWeight(const char* asteroidFilePath, const char* projectileFilePath, const char* playerFilePath)
 {

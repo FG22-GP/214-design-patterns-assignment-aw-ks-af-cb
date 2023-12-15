@@ -3,10 +3,11 @@
 #include <iostream>
 #include <SDL_timer.h>
 
-#include "AsteroidPool.h"
-#include "TextureFlyWeight.h"
-#include "../Actors/Asteroid.h"
-#include "../Collision/CollisionHandler.h"
+#include "ObjectPools/AsteroidPool.h"
+#include "Util/TextureFlyWeight.h"
+#include "InputHandler/InputHandler.h"
+#include "Actors/Asteroid.h"
+#include "Collision/CollisionHandler.h"
 
 // static SDL_Renderer* renderer;
 // static SDL_Window* window;

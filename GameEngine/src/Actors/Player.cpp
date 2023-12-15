@@ -1,5 +1,5 @@
 ﻿#include "Player.h"
-#include "../BaseClasses/Core.h"
+#include "../Core.h"
 
 Player::Player(
     SDL_Rect* rect,

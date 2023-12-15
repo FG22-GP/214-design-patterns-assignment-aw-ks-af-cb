@@ -3,7 +3,7 @@
 #include <iostream>
 #include <SDL_image.h>
 
-#include "Core.h"
+#include "../Core.h"
 #include "../Struct/float2.h"
 
 Actor::Actor(SDL_Rect* Rect, int CollisionRadius)

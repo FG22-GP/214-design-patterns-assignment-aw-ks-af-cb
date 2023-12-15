@@ -5,7 +5,7 @@
 #include <SDL_ttf.h>
 #include <SDL_surface.h>
 
-#include "Core.h"
+#include "../Core.h"
 
 UI::UI() 
 {

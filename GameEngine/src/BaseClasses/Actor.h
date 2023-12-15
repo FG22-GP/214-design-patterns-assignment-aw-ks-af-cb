@@ -4,7 +4,7 @@
 #include <SDL_render.h>
 #include "../Struct/float2.h"
 #include "Object.h"
-#include "TextureFlyWeight.h"
+#include "../Util/TextureFlyWeight.h"
 
 class Actor : public Object
 {

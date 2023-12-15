@@ -3,8 +3,8 @@
 #include "Asteroid.h"
 #include <random>
 
-#include "../BaseClasses/AsteroidPool.h"
-#include "../BaseClasses/Core.h"
+#include "../ObjectPools/AsteroidPool.h"
+#include "../Core.h"
 
 Asteroid::Asteroid(SDL_Rect* rect, const char filePath[], int collisionRadius, float speed, float2 direction): Actor(rect, collisionRadius) ,IVelocity(speed, direction)
 {

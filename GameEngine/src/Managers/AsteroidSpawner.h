@@ -2,7 +2,7 @@
 #include <random>
 
 #include "../BaseClasses/Actor.h"
-#include "../BaseClasses/Random.h"
+#include "../Util/Random.h"
 
 class AsteroidSpawner
 {
