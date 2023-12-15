@@ -39,11 +39,7 @@ void Asteroid::Destroy()
 
 void Asteroid::RenderPass(SDL_Renderer* renderer)
 {
-    if (renderer == nullptr)
-        return;
-    
-    Rect->x = static_cast<int>((Position.X - Offset.X));
-    Rect->y = static_cast<int>((Position.Y - Offset.Y));
+    if (renderer == nullptr) return;
 
     SDL_Point center = { Rect->w / 2, Rect->h / 2};
     

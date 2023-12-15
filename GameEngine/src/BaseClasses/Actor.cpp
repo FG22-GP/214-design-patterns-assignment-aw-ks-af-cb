@@ -42,6 +42,8 @@ float2 Actor::GetPosition() const
 void Actor::SetPosition(float2 Position)
 {
     this->Position = Position;
+    Rect->x = static_cast<int>((Position.X - Offset.X));
+    Rect->y = static_cast<int>((Position.Y - Offset.Y));
 }
 
 void Actor::SetSize(float2 size)
@@ -60,9 +62,6 @@ void Actor::RenderPass(SDL_Renderer* renderer)
 {
     if (renderer == nullptr)
         return;
-    
-    Rect->x = static_cast<int>((Position.X - Offset.X));
-    Rect->y = static_cast<int>((Position.Y - Offset.Y));
     
     SDL_RenderCopy(renderer, GetTexture().get(), nullptr, Rect);
 }
