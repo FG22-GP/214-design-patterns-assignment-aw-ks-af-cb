@@ -36,7 +36,7 @@ protected:
 public:
     float2 GetPosition() const;
     void SetPosition(float2 Position);
-    void SetSize(float2 size) const;
+    void SetSize(float2 size);
     void AddPositionOffset(float2 DeltaPosition);
     virtual void RenderPass(SDL_Renderer* renderer);
     virtual void Destroy();
