@@ -8,6 +8,23 @@
 #include "../Actors/Asteroid.h"
 #include "../Collision/CollisionHandler.h"
 
+// static SDL_Renderer* renderer;
+// static SDL_Window* window;
+// static Core core{(SDL_CreateWindowAndRenderer(100, 100, SDL_INIT_VIDEO, &window, &renderer),renderer)};
+
+AsteroidPool* Core::asteroidPool;
+ProjectilePool* Core::projectilePool;
+
+InputHandler* Core::input_handler;
+
+SDL_Renderer* Core::renderer;
+
+std::unique_ptr<UI> Core::ui;
+
+TextureFlyWeight* Core::TextureFlyWeight;
+std::unique_ptr<ScoreManager> Core::score_manager;
+
+Player* Core::player;
 
 Core::Core(SDL_Renderer* renderer): e(), LastFrameTime(0)
 {
@@ -142,7 +159,7 @@ void Core::Collision()
             asteroid->Destroy();
             player->TakeDamage(1);
             continue;
-        }   
+        }
         
         for (int j = 0; j < Actors.size(); ++j)
         {

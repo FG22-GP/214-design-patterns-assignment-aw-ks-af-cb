@@ -23,25 +23,25 @@ public:
 public:
     static inline std::vector<std::unique_ptr<Actor>> Actors;
     
-    static inline ProjectilePool* projectilePool;
+    static ProjectilePool* projectilePool;
 
     static inline float2 MidPoint = float2(1024/2, 768/2);
 
-    static inline AsteroidPool* asteroidPool;
+    static AsteroidPool* asteroidPool;
     
-    static inline InputHandler* input_handler;
+    static InputHandler* input_handler;
 
-    static inline SDL_Renderer* renderer;
+    static SDL_Renderer* renderer;
 
-    static inline std::unique_ptr<UI> ui;
+    static std::unique_ptr<UI> ui;
 
-    static inline TextureFlyWeight* TextureFlyWeight;
+    static TextureFlyWeight* TextureFlyWeight;
 
-    static inline std::unique_ptr<ScoreManager> score_manager;
+    static std::unique_ptr<ScoreManager> score_manager;
     
     static void RemoveBinding();
 
-    static inline Player* player;
+    static Player* player;
 private:
     bool quit = false;
     bool restart = false;
@@ -65,5 +65,6 @@ public:
     {
         return player->GetCurrentHealth() <= 0;
     }
-    
 };
+
+// extern Core core;
