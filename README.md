@@ -17,7 +17,7 @@ Christian Bäckström, Alen Forko, Kristoffer Saxmo, Alexander Wahrenstedt
 
 
 3. **Object Pool**  
-   In conjunction with the factory pattern, we utilize an [ObjectPool](https://github.com/FG22-GP/214-design-patterns-assignment-aw-ks-af-cb/blob/main/GameEngine/src/BaseClasses/AsteroidPool.cpp). This means we don't have to remove objects from the game. Instead, we disable the objects and remake them for future use when they are acquired. When initializing, it creates a chosen amount of objects with the help of our factories. It will create even more of them, should it run out.
+   To help with performance, we utilize an [ObjectPool](https://github.com/FG22-GP/214-design-patterns-assignment-aw-ks-af-cb/blob/main/GameEngine/src/BaseClasses/AsteroidPool.cpp). This means we don't have to remove objects from the game. Instead, we disable the objects and remake them for future use when they are acquired. When initializing, it creates a chosen amount of objects with the help of our factories. It will create even more of them, should it run out.
 
 
 4. **Flyweight**  
