@@ -6,7 +6,7 @@
 #include "Managers/ScoreManager.h"
 #include "Util/TextureFlyWeight.h"
 #include "Actors/Player.h"
-#include "BaseClasses/UI.h"
+#include "UI/UI.h"
 #include "Managers/AsteroidSpawner.h"
 
 class AsteroidPool;
